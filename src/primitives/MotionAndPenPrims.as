@@ -79,6 +79,13 @@ public class MotionAndPenPrims {
 	}
 	
 	private function primFyrkant(b:Block):void {
+		var s:ScratchSprite = interp.targetSprite();
+		var steps:Number = interp.numarg(b, 0);
+		var radians:Number = (Math.PI * (90 - s.direction)) / 180;
+		
+		for (var i:int = 0; i < 4;i++ ) {
+			moveSpriteTo(s, s.scratchX + (steps * Math.cos(radians)), s.scratchY + (steps * Math.sin(radians)))
+		}
 		
 	}
 
