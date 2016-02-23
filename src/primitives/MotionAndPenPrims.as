@@ -52,6 +52,7 @@ public class MotionAndPenPrims {
 		primTable["gotoX:y:"]			= primGoTo;
 		primTable["gotoSpriteOrMouse:"]	= primGoToSpriteOrMouse;
 		primTable["glideSecs:toX:y:elapsed:from:"] = primGlide;
+		primTable["fyrkant"]			= primFyrkant;
 
 		primTable["changeXposBy:"]		= primChangeX;
 		primTable["xpos:"]				= primSetX;
@@ -75,6 +76,10 @@ public class MotionAndPenPrims {
 		primTable["penSize:"]			= primSetPenSize;
 		primTable["changePenSizeBy:"]	= primChangePenSize;
 		primTable["stampCostume"]		= primStamp;
+	}
+	
+	private function primFyrkant(b:Block):void {
+		
 	}
 
 	private function primMove(b:Block):void {

@@ -135,6 +135,8 @@ public class Specs {
 		["x position",							"r", 1, "xpos"],
 		["y position",							"r", 1, "ypos"],
 		["direction",							"r", 1, "heading"],
+		//malles egna block
+		["FYRKANT %n STEG",						" ", 1, "fyrkant"],					20],
 
 		// looks
 		["say %s for %n secs",					" ", 2, "say:duration:elapsed:from:",	"Hello!", 2],
