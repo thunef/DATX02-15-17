@@ -64,7 +64,7 @@ public class MotionAndPenPrims {
 		primTable["xpos"]				= primXPosition;
 		primTable["ypos"]				= primYPosition;
 		primTable["heading"]			= primDirection;
-
+		/*
 		primTable["clearPenTrails"]		= primClear;
 		primTable["putPenDown"]			= primPenDown;
 		primTable["putPenUp"]			= primPenUp;
@@ -75,18 +75,19 @@ public class MotionAndPenPrims {
 		primTable["changePenShadeBy:"]	= primChangePenShade;
 		primTable["penSize:"]			= primSetPenSize;
 		primTable["changePenSizeBy:"]	= primChangePenSize;
+		*/
 		primTable["stampCostume"]		= primStamp;
 	}
-	
+
 	private function primFyrkant(b:Block):void {
 		var s:ScratchSprite = interp.targetSprite();
 		var steps:Number = interp.numarg(b, 0);
 		var radians:Number = (Math.PI * (90 - s.direction)) / 180;
-		
+
 		for (var i:int = 0; i < 4;i++ ) {
 			moveSpriteTo(s, s.scratchX + (steps * Math.cos(radians)), s.scratchY + (steps * Math.sin(radians)))
 		}
-		
+
 	}
 
 	private function primMove(b:Block):void {

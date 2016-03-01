@@ -61,12 +61,12 @@ public class Specs {
 	 // id   category name	color
 		[0,  "undefined",	0xD42828],
 		[1,  "Motion",		0x4a6cd4],
-		[2,  "Looks",		0x8a55d7],
+		//[2,  "Looks",		0x8a55d7],
 		[3,  "Sound",		0xbb42c3],
-		[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
+		//[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
 		[5,  "Events",		0xc88330],
 		[6,  "Control",		0xe1a91a],
-		[7,  "Sensing",		0x2ca5e2],
+		//[7,  "Sensing",		0x2ca5e2],
 		[8,  "Operators",	0x5cb712],
 		[9,  "Data",		variableColor],
 		[10, "More Blocks",	procedureColor],
@@ -198,7 +198,7 @@ public class Specs {
 		["tempo",								"r", 3,  "tempo"],
 
 		// pen
-		["clear",								" ", 4, "clearPenTrails"],
+	/*	["clear",								" ", 4, "clearPenTrails"],
 		["-"],
 		["stamp",								" ", 4, "stampCostume"],
 		["-"],
@@ -215,9 +215,9 @@ public class Specs {
 		["change pen size by %n",				" ", 4, "changePenSizeBy:",		1],
 		["set pen size to %n",					" ", 4, "penSize:", 			1],
 		["-"],
-
+*/
 		// stage pen
-		["clear",								" ", 104, "clearPenTrails"],
+		//["clear",								" ", 104, "clearPenTrails"],
 
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
