@@ -2,16 +2,30 @@
 import zipfile
 import json
 from pprint import pprint
+
 archive = zipfile.ZipFile('test.sb2', 'r')
-jsondata = archive.read('project.json')
-data=json.loads(jsondata)
+data=json.loads(archive.read('project.json'))
 
 scripts = data['children'][0]['scripts']
+
+def runCommand(cmd):
+        print "running",cmd
+
+        if cmd[0]=="forward:":
+            print "fortare" , cmd[1]
+        elif cmd[0] =="turnRight:":
+                print "rotate right" , cmd[1], " degrees"
+        elif cmd[0] =="turnLeft:":
+            print "rotate left" , cmd[1], " degrees"
+        elif cmd[0] =="doRepeat":
+            for index in range(cmd[1]):
+                runCommand(cmd[2][0])
+
 
 
 def runScript(script):
     for index in range(len(script)):
-        print "run",script[index]
+        runCommand(script[index])
 
 # To check if string is same as event(in list form)
 def isSame(script,whichOne):
@@ -29,6 +43,6 @@ def findScripts(whichOne):
             runScript(scripts[index][2])
 
 
-x = raw_input('What is pushed: ')
+x = raw_input('What is pushed (ex:"whenClicked"): ')
 
 findScripts(x)
