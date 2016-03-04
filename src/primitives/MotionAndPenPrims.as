@@ -45,6 +45,8 @@ public class MotionAndPenPrims {
 
 	public function addPrimsTo(primTable:Dictionary):void {
 		primTable["forward:"]			= primMove;
+		primTable["accelerate:"]			= primAccelerate;
+		primTable["retardate:"]			= primRetardate;
 		primTable["turnRight:"]			= primTurnRight;
 		primTable["turnLeft:"]			= primTurnLeft;
 		primTable["heading:"]			= primSetDirection;
@@ -96,6 +98,10 @@ public class MotionAndPenPrims {
 		var radians:Number = (Math.PI * (90 - s.direction)) / 180;
 		var d:Number = interp.numarg(b, 0);
 		moveSpriteTo(s, s.scratchX + (d * Math.cos(radians)), s.scratchY + (d * Math.sin(radians)));
+	}
+	private function primAccelerate(b:Block):void {
+	}
+	private function primRetardate(b:Block):void {
 	}
 
 	private function primTurnRight(b:Block):void {
