@@ -1,55 +1,60 @@
+#!/usr/bin/env python
 import json
 import os
 import shutil
 import zipfile
-from collections import deque
+#from collections import deque
 
-def getJson():
-    zip_file = zipfile.ZipFile("Untitled.zip")
+
+expressions = [
+    'doRepeat',
+    'doForever',
+    'forward:'
+    'turnRight:'
+    'turnLeft:'
+]
+
+code_to_run = []
+
+def getJson(name):
+    zip_file = zipfile.ZipFile(name)
     for member in zip_file.namelist():
         if member == 'project.json':
            json_data = zip_file.read(member)
            zip_file.close()
            return json_data
 
-
-json_poop = getJson()
-json_data = json.loads(json_poop)
-
-json_scripts = json_data['children'][0]['scripts']
-
-
-def runScript(script):
-    script_str = str(script[0])
-    script_for = script[1]
+def runCommand(command):
+    script_str = str(command[0])
+    script_for = command[1]
     print "run:", script_str, "for:", script_for
-#    for index in range(len(script)):
-#        print "run",script[index]
 
-# To check if string is same as event(in list form)
-def isSame(script,whichOne):
-#    print range(len(script))
-#    for index in range(len(script)):
-    if script == whichOne:
-        return 1
-    return 0
+def runCommands(commands):
+    for index in range(len(commands)):
+        runCommand(commands[index])
+
+def getCommands(json_data):
+    command_list = []
+    for k in range(len(json_data[0][2])):
+#        print json_data[0][2][k]
+        tmp = json_data[0][2][k]
+        print "tmp:", tmp
+        for n in range(len(tmp)):
+            if tmp[n] == 'doRepeat':
 
 
-def findScripts():
-    for index in range(len(scripts)):
-        #Don't know first 2 rows but it script starts at [2]
-        #temp = isSame(scripts[index][0],whichOne)
-        #if temp:
-        runScript(scripts[index])
+    print "Command_list:", command_list
+    return command_list
 
-print range(len(json_scripts[0][2]))
-#print scripts
-scripts = []
-for k in range(len(json_scripts[0][2])):
-    scripts.append(json_scripts[0][2][k])
+def start(name):
+    json_raw_data = getJson(name)
+    json_data     = json.loads(json_raw_data)
+    json_scripts  = json_data['children'][0]['scripts']
 
-print scripts
-#x = raw_input('What is pushed: ')
+    command_list = getCommands(json_scripts)
 
-findScripts()
+    runCommands(command_list)
 
+if __name__ == "__main__":
+    import sys
+    start(sys.argv[1])
