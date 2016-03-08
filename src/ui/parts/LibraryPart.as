@@ -152,10 +152,11 @@ public class LibraryPart extends UIPart {
 			if (app.stageIsContracted) libraryButton.x = 138;
 			libraryButton.y = buttonY + 0;
 			paintButton.x = libraryButton.x + libraryButton.width + 3;
+			//paintButton.x = 380;
 			paintButton.y = buttonY + 1;
-			importButton.x = paintButton.x + paintButton.width + 4;
+			importButton.x = paintButton.x + paintButton.width + 4; // added 4
 			importButton.y = buttonY + 0;
-			photoButton.x = importButton.x + importButton.width + 8;
+			photoButton.x = importButton.x + importButton.width + 8; // added 8
 			photoButton.y = buttonY + 2;
 
 			stageThumbnail.x = 2;
@@ -166,13 +167,15 @@ public class LibraryPart extends UIPart {
 			newSpriteLabel.y = 6;
 		}
 		else {
-			libraryButton.visible = false;
+
 			paintButton.visible = false;
 			importButton.visible = false;
 			photoButton.visible = false;
 			newSpriteLabel.visible = false;
 			spritesFrame.x = 1;
 		}
+		libraryButton.visible = false;
+		backdropLibraryButton.visible=false;
 
 		spritesFrame.y = CSS.titleBarH + 1;
 		spritesFrame.allowHorizontalScrollbar = false;
@@ -280,10 +283,11 @@ public class LibraryPart extends UIPart {
 		backdropLibraryButton.x = 4;
 		backdropLibraryButton.y = buttonY + 3;
 		backdropPaintButton.x = backdropLibraryButton.right() + 4;
+		//backdropPaintButton.x = 4;
 		backdropPaintButton.y = buttonY + 1;
-		backdropImportButton.x = backdropPaintButton.right() + 1;
+		backdropImportButton.x = backdropPaintButton.right() + 1; //added 3
 		backdropImportButton.y = buttonY + 0;
-		backdropCameraButton.x = backdropImportButton.right() + 5;
+		backdropCameraButton.x = backdropImportButton.right() + 5; // added 3
 		backdropCameraButton.y = buttonY + 3;
 	}
 
@@ -384,7 +388,7 @@ public class LibraryPart extends UIPart {
 				if (sprName.length > 3) sprName = sprName.slice(0, sprName.length - 2);
 				spr = new ScratchSprite(sprName);
 				for each (c in list) spr.costumes.push(c);
-				if (spr.costumes.length > 1) spr.costumes.shift(); // remove default costume
+				//if (spr.costumes.length > 1) spr.costumes.shift(); // remove default costume
 				spr.showCostumeNamed(list[0].costumeName);
 				app.addNewSprite(spr);
 			}

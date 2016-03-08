@@ -119,8 +119,8 @@ public class ImagesPart extends UIPart {
 
 	public function refresh(fromEditor:Boolean = false):void {
 		updateLabel();
-		backdropLibraryButton.visible = isStage();
-		costumeLibraryButton.visible = !isStage();
+		backdropLibraryButton.visible = false;//isStage();
+		costumeLibraryButton.visible = false;//!isStage();
 		(listFrame.contents as MediaPane).refresh();
 		if (!fromEditor) selectCostume(); // this refresh is because the editor just saved the costume; do nothing
 	}
