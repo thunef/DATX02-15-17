@@ -45,6 +45,10 @@ public class MotionAndPenPrims {
 
 	public function addPrimsTo(primTable:Dictionary):void {
 		primTable["forward:"]			= primMove;
+		primTable["accelerate:"]			= primAccelerate;
+		primTable["retardate:"]			= primRetardate;
+		primTable["maxspeed:"]			= primMaxSpeed;
+		primTable["nospeed:"]			= primNoSpeed;
 		primTable["turnRight:"]			= primTurnRight;
 		primTable["turnLeft:"]			= primTurnLeft;
 		primTable["heading:"]			= primSetDirection;
@@ -52,6 +56,8 @@ public class MotionAndPenPrims {
 		primTable["gotoX:y:"]			= primGoTo;
 		primTable["gotoSpriteOrMouse:"]	= primGoToSpriteOrMouse;
 		primTable["glideSecs:toX:y:elapsed:from:"] = primGlide;
+		primTable["maxspeed"]			= primFyrkant;
+		primTable["nospeed"]			= primFyrkant;
 
 		primTable["changeXposBy:"]		= primChangeX;
 		primTable["xpos:"]				= primSetX;
@@ -63,7 +69,7 @@ public class MotionAndPenPrims {
 		primTable["xpos"]				= primXPosition;
 		primTable["ypos"]				= primYPosition;
 		primTable["heading"]			= primDirection;
-
+		/*
 		primTable["clearPenTrails"]		= primClear;
 		primTable["putPenDown"]			= primPenDown;
 		primTable["putPenUp"]			= primPenUp;
@@ -74,7 +80,19 @@ public class MotionAndPenPrims {
 		primTable["changePenShadeBy:"]	= primChangePenShade;
 		primTable["penSize:"]			= primSetPenSize;
 		primTable["changePenSizeBy:"]	= primChangePenSize;
+		*/
 		primTable["stampCostume"]		= primStamp;
+	}
+
+	private function primFyrkant(b:Block):void {
+		var s:ScratchSprite = interp.targetSprite();
+		var steps:Number = interp.numarg(b, 0);
+		var radians:Number = (Math.PI * (90 - s.direction)) / 180;
+
+		for (var i:int = 0; i < 4;i++ ) {
+			moveSpriteTo(s, s.scratchX + (steps * Math.cos(radians)), s.scratchY + (steps * Math.sin(radians)))
+		}
+
 	}
 
 	private function primMove(b:Block):void {
@@ -83,6 +101,14 @@ public class MotionAndPenPrims {
 		var radians:Number = (Math.PI * (90 - s.direction)) / 180;
 		var d:Number = interp.numarg(b, 0);
 		moveSpriteTo(s, s.scratchX + (d * Math.cos(radians)), s.scratchY + (d * Math.sin(radians)));
+	}
+	private function primAccelerate(b:Block):void {
+	}
+	private function primRetardate(b:Block):void {
+	}
+	private function primMaxSpeed(b:Block):void {
+	}
+	private function primNoSpeed(b:Block):void {
 	}
 
 	private function primTurnRight(b:Block):void {

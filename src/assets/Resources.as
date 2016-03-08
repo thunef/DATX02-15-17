@@ -31,7 +31,7 @@ public class Resources {
 		}
 		return new resourceClass();
 	}
-	
+
 	public static function createDO(resourceName:String):DisplayObject {
 		var resourceClass:Class = Resources[resourceName];
 		if (!resourceClass) {
@@ -80,6 +80,7 @@ public class Resources {
 	[Embed(source='blocks/stopIcon.png')] private static const stopIcon:Class;
 	[Embed(source='blocks/turnLeftIcon.png')] private static const turnLeftIcon:Class;
 	[Embed(source='blocks/turnRightIcon.png')] private static const turnRightIcon:Class;
+	[Embed(source='blocks/spiderIcon.png')] private static const spiderIcon:Class;
 
 	// Cursors
 	[Embed(source='cursors/copyCursor.png')] private static const copyCursor:Class;
@@ -91,7 +92,7 @@ public class Resources {
 	[Embed(source='cursors/mouseCircle.png')] private static const mouseCircle:Class;
 	[Embed(source='cursors/segmentationBusyCursor.png')] private static const segmentationBusy:Class;
 	[Embed(source='UI/paint/zoomInCursor.png')] private static const zoomInCursor:Class;
-	
+
 	[Embed(source='cursors/videoCursor.svg')] private static const videoCursor:Class;
 
 	// Top bar
@@ -322,7 +323,7 @@ public class Resources {
 	[Embed(source='UI/paint/bitmapStampOn.png')] private static const bitmapStampOn:Class;
 	[Embed(source='UI/paint/bitmapTextOff.png')] private static const bitmapTextOff:Class;
 	[Embed(source='UI/paint/bitmapTextOn.png')] private static const bitmapTextOn:Class;
-	
+
 	//Recording
 	[Embed(source='StopArrow.png')] private static const stopArrow:Class;
 	[Embed(source='VideoShare.svg')] private static const videoShare:Class;

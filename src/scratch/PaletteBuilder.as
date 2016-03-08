@@ -65,22 +65,23 @@ public class PaletteBuilder {
 		app.palette.clear(scrollToOrigin);
 		nextY = 7;
 
-		if (selectedCategory == Specs.dataCategory) return showDataCategory();
-		if (selectedCategory == Specs.myBlocksCategory) return showMyBlocksPalette(shiftKey);
 
 		var catName:String = Specs.categories[selectedCategory][1];
 		var catColor:int = Specs.blockColor(selectedCategory);
 		if (app.viewedObj() && app.viewedObj().isStage) {
 			// The stage has different blocks for some categories:
-			var stageSpecific:Array = ['Control', 'Looks', 'Motion', 'Pen', 'Sensing'];
+			var stageSpecific:Array = ['Control', 'Motion', 'Sensing'];
 			if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
-			if (catName == 'Motion') {
+			if (catName == 'Motion' || 1==1) {
 				addItem(makeLabel(Translator.map('Stage selected:')));
 				nextY -= 6;
 				addItem(makeLabel(Translator.map('No motion blocks')));
 				return;
 			}
 		}
+		if (selectedCategory == Specs.dataCategory) return showDataCategory();
+		if (selectedCategory == Specs.myBlocksCategory) return showMyBlocksPalette(shiftKey);
+
 		addBlocksForCategory(selectedCategory, catColor);
 		updateCheckboxes();
 	}

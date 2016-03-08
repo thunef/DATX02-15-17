@@ -431,6 +431,7 @@ public class Interpreter {
 		primTable = new Dictionary();
 		// control
 		primTable["whenGreenFlag"]		= primNoop;
+		primTable["whenSpider"]		= primNoop;
 		primTable["whenKeyPressed"]		= primNoop;
 		primTable["whenClicked"]		= primNoop;
 		primTable["whenSceneStarts"]	= primNoop;
