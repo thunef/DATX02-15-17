@@ -47,6 +47,8 @@ public class MotionAndPenPrims {
 		primTable["forward:"]			= primMove;
 		primTable["accelerate:"]			= primAccelerate;
 		primTable["retardate:"]			= primRetardate;
+		primTable["maxspeed:"]			= primMaxSpeed;
+		primTable["nospeed:"]			= primNoSpeed;
 		primTable["turnRight:"]			= primTurnRight;
 		primTable["turnLeft:"]			= primTurnLeft;
 		primTable["heading:"]			= primSetDirection;
@@ -54,7 +56,8 @@ public class MotionAndPenPrims {
 		primTable["gotoX:y:"]			= primGoTo;
 		primTable["gotoSpriteOrMouse:"]	= primGoToSpriteOrMouse;
 		primTable["glideSecs:toX:y:elapsed:from:"] = primGlide;
-		primTable["fyrkant"]			= primFyrkant;
+		primTable["maxspeed"]			= primFyrkant;
+		primTable["nospeed"]			= primFyrkant;
 
 		primTable["changeXposBy:"]		= primChangeX;
 		primTable["xpos:"]				= primSetX;
@@ -102,6 +105,10 @@ public class MotionAndPenPrims {
 	private function primAccelerate(b:Block):void {
 	}
 	private function primRetardate(b:Block):void {
+	}
+	private function primMaxSpeed(b:Block):void {
+	}
+	private function primNoSpeed(b:Block):void {
 	}
 
 	private function primTurnRight(b:Block):void {

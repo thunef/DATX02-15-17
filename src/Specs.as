@@ -62,8 +62,8 @@ public class Specs {
 		[0,  "undefined",	0xD42828],
 		[5,  "Events",		0xc88330],
 		[1,  "Motion",		0x4a6cd4],
-		//[2,  "Looks",		0x8a55d7],
-		[3,  "Sound",		0xbb42c3],
+		[2,  "Actions",		0x8a55d7],
+		//[3,  "Sound",		0xbb42c3],
 		//[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
 
 		[6,  "Control",		0xe1a91a],
@@ -106,6 +106,7 @@ public class Specs {
 		if (name == "stop") icon = Resources.createBmp('stopIcon');
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
+		if (name == "spider") icon = Resources.createBmp('spiderIcon');
 		if (icon != null) icon.scaleX = icon.scaleY = 0.5;
 		return icon;
 	}
@@ -116,6 +117,8 @@ public class Specs {
 		["move %n steps",						" ", 1, "forward:",					10],
 		["Increase speed by %n ",						" ", 1, "accelerate:",					1],
 		["Decrease speed by %n ",						" ", 1, "retardate:",					1],
+		["Max speed",						" ", 1, "maxspeed:",					1],
+		["No speed",						" ", 1, "nospeed:",					1],
 		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				15],
 		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				15],
 		["--"],
@@ -126,21 +129,27 @@ public class Specs {
 		//["go to %m.spriteOrMouse",				" ", 1, "gotoSpriteOrMouse:",		"mouse-pointer"],
 		//["glide %n secs to x:%n y:%n",			" ", 1, "glideSecs:toX:y:elapsed:from:"],
 		["--"],
-		["change x by %n",						" ", 1, "changeXposBy:",			10],
+		//["change x by %n",						" ", 1, "changeXposBy:",			10],
 		//["set x to %n",							" ", 1, "xpos:",					0],
-		["change y by %n",						" ", 1, "changeYposBy:",			10],
+		//["change y by %n",						" ", 1, "changeYposBy:",			10],
 		//["set y to %n",							" ", 1, "ypos:",					0],
 		["--"],
-		["if on edge, bounce",					" ", 1, "bounceOffEdge"],
+		//["if on edge, bounce",					" ", 1, "bounceOffEdge"],
 		["-"],
 		//["set rotation style %m.rotationStyle",	" ", 1, "setRotationStyle", 		"left-right"],
 		["--"],
-		["x position",							"r", 1, "xpos"],
-		["y position",							"r", 1, "ypos"],
-		["direction",							"r", 1, "heading"],
+		//["x position",							"r", 1, "xpos"],
+		//["y position",							"r", 1, "ypos"],
+		//["direction",							"r", 1, "heading"],
 
+		//Actions
+		["Turn on LED",								" ", 2, "led:on"],
+		["Turn off LED",								" ", 2, "led:off"],
+		["Turn on servo",								" ", 2, "servo:on"],
+		["Turn off servo",								" ", 2, "servo:off"],
+		["Set servo to position %n",								" ", 2, "servo:pos"],
 		// looks
-		["say %s for %n secs",					" ", 2, "say:duration:elapsed:from:",	"Hello!", 2],
+		/*["say %s for %n secs",					" ", 2, "say:duration:elapsed:from:",	"Hello!", 2],
 		["say %s",								" ", 2, "say:",							"Hello!"],
 		["think %s for %n secs",				" ", 2, "think:duration:elapsed:from:", "Hmm...", 2],
 		["think %s",							" ", 2, "think:",						"Hmm..."],
@@ -165,7 +174,7 @@ public class Specs {
 		["costume #",							"r", 2, "costumeIndex"],
 		["backdrop name",						"r", 2, "sceneName"],
 		["size",								"r", 2, "scale"],
-
+		*/
 		// stage looks
 		["switch backdrop to %m.backdrop",			" ", 102, "startScene", 			"backdrop1"],
 		["switch backdrop to %m.backdrop and wait", " ", 102, "startSceneAndWait",		"backdrop1"],
@@ -222,15 +231,16 @@ public class Specs {
 
 		// triggers
 		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
-		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
-		["when this sprite clicked",			"h", 5, "whenClicked"],
-		["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
+		["when @spider clicked",				"h", 5, "whenSpider"],
+		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
+		//["when this sprite clicked",			"h", 5, "whenClicked"],
+		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
 		["--"],
 		["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
 		["--"],
-		["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
-		["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
-		["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
+		//["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
+		//["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
+		//["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
 
 		// control - sprite
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
@@ -245,9 +255,9 @@ public class Specs {
 		["-"],
 		["stop %m.stop",						"f", 6, "stopScripts", "all"],
 		["-"],
-		["when I start as a clone",				"h", 6, "whenCloned"],
-		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
-		["delete this clone",					"f", 6, "deleteClone"],
+		//["when I start as a clone",				"h", 6, "whenCloned"],
+		//["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
+		//["delete this clone",					"f", 6, "deleteClone"],
 		["-"],
 
 		// control - stage
@@ -269,12 +279,12 @@ public class Specs {
 		//["touching %m.touching?",				"b", 7, "touching:",			""],
 		//["touching color %c?",					"b", 7, "touchingColor:"],
 		//["color %c is touching %c?",			"b", 7, "color:sees:"],
-		["distance to %m.touching",		"r", 7, "distanceTo:",			""],
+		["distance to object ",		"r", 7, "distanceTo:",			""],
 		["-"],
 		//["ask %s and wait",						" ", 7, "doAsk", 				"What's your name?"],
 		//["answer",								"r", 7, "answer"],
 		["-"],
-		["key %m.key pressed?",					"b", 7, "keyPressed:",			"space"],
+		//["key %m.key pressed?",					"b", 7, "keyPressed:",			"space"],
 		//["mouse down?",							"b", 7, "mousePressed"],
 		//["mouse x",								"r", 7, "mouseX"],
 		//["mouse y",								"r", 7, "mouseY"],
@@ -283,7 +293,7 @@ public class Specs {
 		["-"],
 	//	["video %m.videoMotionType on %m.stageOrThis", "r", 7, "senseVideoMotion", "motion"],
 	//	["turn video %m.videoState",			" ", 7, "setVideoState",			"on"],
-		["set video transparency to %n%",		" ", 7, "setVideoTransparency",		50],
+		//["set video transparency to %n%",		" ", 7, "setVideoTransparency",		50],
 		["-"],
 		["timer",								"r", 7, "timer"],
 		["reset timer",							" ", 7, "timerReset"],
@@ -292,7 +302,7 @@ public class Specs {
 		["-"],
 		["current %m.timeAndDate", 				"r", 7, "timeAndDate",			"minute"],
 		["days since 2000", 					"r", 7, "timestamp"],
-		["username",							"r", 7, "getUserName"],
+		//["username",							"r", 7, "getUserName"],
 
 		// stage sensing
 		["ask %s and wait",						" ", 107, "doAsk", 				"What's your name?"],
@@ -334,9 +344,9 @@ public class Specs {
 		["%b or %b",							"b", 8, "|"],
 		["not %b",								"b", 8, "not"],
 		["-"],
-		["join %s %s",							"r", 8, "concatenate:with:",	"hello ", "world"],
-		["letter %n of %s",						"r", 8, "letter:of:",			1, "world"],
-		["length of %s",						"r", 8, "stringLength:",		"world"],
+		//["join %s %s",							"r", 8, "concatenate:with:",	"hello ", "world"],
+		//["letter %n of %s",						"r", 8, "letter:of:",			1, "world"],
+		//["length of %s",						"r", 8, "stringLength:",		"world"],
 		["-"],
 		["%n mod %n",							"r", 8, "%",					"", ""],
 		["round %n",							"r", 8, "rounded", 				""],
