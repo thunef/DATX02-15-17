@@ -35,6 +35,7 @@ def runCommand(command):
     script_str = command[0]
     script_for = command[1]
 #    print "run:", script_str, "for:", script_for
+    # TODO: Rewrite this later
     if script_str == "forward:":
         print "framAt:",  script_for
         if speed == 0:
@@ -85,12 +86,14 @@ def runCommands(commands):
 def start(name):
     json_raw_data = getJson(name)
     json_data     = json.loads(json_raw_data)
-#    json_scripts  = []
     json_scripts  = json_data['children'][0]['scripts']
-    json_lists    = json_data['lists']
 
-    getVariables(json_data['variables'])
-    getLists(json_lists)
+    if 'variables' in {x for x in json_data if x in 'variables'}:
+        getVariables(json_data['variables'])
+
+    if 'lists' in {x for x in json_data if x in 'lists'}:
+        getLists(json_data['lists'])
+
     runCommands(json_scripts)
 
 
