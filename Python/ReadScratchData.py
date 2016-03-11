@@ -9,7 +9,7 @@ from random import randint
 #import atexit
 #atexit.register(stop)
 
-archive = zipfile.ZipFile('loops.sb2', 'r')
+archive = zipfile.ZipFile('alla_kommandon.sb2', 'r')
 data=json.loads(archive.read('project.json'))
 
 scripts = data['children'][0]['scripts']
@@ -67,8 +67,14 @@ def runCommand(cmd):
             print "doRepeat\n"
             for index in range(cmd[1]):
                 runScript(cmd[2])
+        elif cmd[0] == "doForever":
+            print "going to loop forever!!"
+            print cmd[1]
+            while True:
+                runScript(cmd[1])
         elif cmd[0] == 'doIf':
             print "doIf\n"
+            print cmd[1]
             if isTrue(cmd[1]) :
                 runScript(cmd[2])
         elif cmd[0] == 'doIfElse':
@@ -93,10 +99,17 @@ def runCommand(cmd):
 #        set_speed(255) # 255 is the maximum speed of the gopigo
         elif cmd[0] == "accelerate:":
             print "accelerating:", cmd[1]
+#            for k in range(cmd[1]):
+#                increase_speed()
         elif cmd[0] == "retardate:":
             print "slowing down:", cmd[1]
+#            for k in range(cmd[1]):
+#                decrease_speed()
         elif cmd[0] == "nospeed:":
             print "stoping"
+            #stop()
+            
+        else: print "TODO:", cmd[0]
 
 def runScript(script):
     for index in range(len(script)):
