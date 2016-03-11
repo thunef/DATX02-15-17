@@ -9,12 +9,28 @@ from random import randint
 #import atexit
 #atexit.register(stop)
 
-archive = zipfile.ZipFile('test.sb2', 'r')
+archive = zipfile.ZipFile('loops.sb2', 'r')
 data=json.loads(archive.read('project.json'))
 
 scripts = data['children'][0]['scripts']
 
+lists     = {}
 variables = {}
+
+speed = 0
+
+# put the userdefined lists with the content of that
+# list in a container, each list keeps its name  
+def getLists(json_lists):
+    for k in range(len(json_lists)):
+        name = json_lists[k]['listName']
+        lists[name] = json_lists[k]['contents']
+
+def getVariables(json_variables):
+    for k in range(len(json_variables)):
+        name = json_variables[k]['name']
+        variables[name] = json_variables[k]['value']
+
 
 def getValue(cmd):
     if cmd[0] == 'readVariable':
@@ -36,35 +52,51 @@ def isTrue(statement):
         return a > b
 
 def runCommand(cmd):
-        print "\nrunning\n -----",cmd
+        print "\nrunning:"
 
-        if cmd[0]=="forward:":
+        if cmd[0] == "forward:":
             print "framAt" , cmd[1]
             #fwd()
-        elif cmd[0] =="turnRight:":
-            print "rotate right" , cmd[1], " degrees"
+        elif cmd[0] == "turnRight:":
+            print "rotate right" , cmd[1], " degrees\n"
             #right()
-        elif cmd[0] =="turnLeft:":
-            print "rotate left" , cmd[1], " degrees"
+        elif cmd[0] == "turnLeft:":
+            print "rotate left" , cmd[1], " degrees\n"
             #left()
-        elif cmd[0] =="doRepeat":
+        elif cmd[0] == "doRepeat":
+            print "doRepeat\n"
             for index in range(cmd[1]):
                 runScript(cmd[2])
-        elif cmd[0] =='doIf':
+        elif cmd[0] == 'doIf':
+            print "doIf\n"
             if isTrue(cmd[1]) :
                 runScript(cmd[2])
-        elif cmd[0] =='doIfElse':
+        elif cmd[0] == 'doIfElse':
+            print "doIfElse\n"
             if isTrue(cmd[1]):
                 runScript(cmd[2])
             else:
                 runScript(cmd[3])
         elif cmd[0] =='setVar:to:':
+            print "setVar to: ", cmd[2], "\n"
             variables[cmd[1]] = cmd[2]
             print cmd[1],"  =  ",variables[cmd[1]]
         elif cmd[0] =='changeVar:by:':
             variables[cmd[1]] += cmd[2]
             print cmd[1],"  =  ",variables[cmd[1]]
-
+        elif cmd[0] == "stopScripts":
+            print "stopScripts"
+#            stop()  # gopigo
+            speed = 0
+        elif cmd[0] == 'maxspeed:':
+            print 'maxspeed'
+#        set_speed(255) # 255 is the maximum speed of the gopigo
+        elif cmd[0] == "accelerate:":
+            print "accelerating:", cmd[1]
+        elif cmd[0] == "retardate:":
+            print "slowing down:", cmd[1]
+        elif cmd[0] == "nospeed:":
+            print "stoping"
 
 def runScript(script):
     for index in range(len(script)):
@@ -76,6 +108,11 @@ def findScripts(whichOne):
         if scripts[index][2][0][0] == whichOne: #First(0) row is the event
             runScript(scripts[index][2])
 
+if 'variables' in {x for x in data if x in 'variables'}:
+    getVariables(data['variables'])
+
+if 'lists' in {x for x in data if x in 'lists'}:
+    getLists(data['lists'])
 
 x = raw_input('What is pushed (ex:"whenClicked"): ')
 findScripts(x)
