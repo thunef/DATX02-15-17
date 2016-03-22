@@ -58,6 +58,8 @@ def getValue(cmd):
         tmp = lists[cmd[3]]
         return tmp[cmd[1]]
 
+    if cmd[0] == '%':
+        return cmd[1] % cmd[2]
     return 0
 
 
@@ -71,6 +73,7 @@ def isTrue(statement):
         return a < b
     elif statement[0] == '>':
         return a > b
+
 
 def setSpeed(s):
     #print "setting speed ", current_speed
@@ -88,8 +91,9 @@ def runCommand(cmd):
             print "framAt" , cmd[1]
             rot=getValue(cmd[1])
             enc_tgt(1,1,rot)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
-                                    ## m2: 0 to disable targeting for motor 2, 1 to enable it
-                                    ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+            ## m2: 0 to disable targeting for motor 2, 1 to enable it
+            ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+            #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
             fwd()
             time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnRight:":
@@ -121,13 +125,19 @@ def runCommand(cmd):
         elif cmd[0] == "stopScripts":
             print "stopScripts"
             stop()  # gopigo
-        elif cmd[0] == 'led:on':
-            print "Both Leds on :)"
+        elif cmd[0] == 'led:l:on':
+            print "Left Led on :)"
             led_on(LED_L)
             led_on(LED_R)
-        elif cmd[0] == 'led:off':
-            print "Both Leds off :)"
+        elif cmd[0] == 'led:l:off':
+            print "Left Led off :)"
             led_off(LED_L)
+            led_off(LED_R)
+        elif cmd[0] == 'led:r:on':
+            print "Right Led on :)"
+            led_on(LED_R)
+        elif cmd[0] == 'led:r:off':
+            print "Right Led off :)"
             led_off(LED_R)
         # Control
         elif cmd[0] == "doRepeat":
