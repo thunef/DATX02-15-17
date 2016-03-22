@@ -14,7 +14,9 @@ DELAY_BETWEEN_COMMANDS = 0.5 #Sec
 DATE = datetime.datetime.now()
 DiffSince2000 = datetime.date.today() - datetime.date(2000, 01, 01)
 
-archive = zipfile.ZipFile('drive2.sb2', 'r')
+ROTATIONTIME = 15 # For waiting on wheels to rotate
+
+archive = zipfile.ZipFile('drive.sb2', 'r')
 data=json.loads(archive.read('project.json'))
 
 scripts = data['children'][0]['scripts']
@@ -22,7 +24,7 @@ scripts = data['children'][0]['scripts']
 lists     = {}
 variables = {}
 
-current_speed = 50
+current_speed = 120
 
 
 # put the userdefined lists with the content of that
@@ -79,25 +81,25 @@ def runCommand(cmd):
         # Motion
         if cmd[0] == "forward:":
             print "framAt" , cmd[1]
-            #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
+            rot=getValue(cmd[1])
+            enc_tgt(1,1,rot)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
                                     ## m2: 0 to disable targeting for motor 2, 1 to enable it
                                     ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
             fwd()
-            set_speed(current_speed)
+            time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnRight:":
-            enable_encoders()
             print "rotate right " , cmd[1], " degrees"
-            #enc_tgt(0,1,18) ##18 per varv
-            #fwd()
+            rot = getValue(cmd[1])/6
+            enc_tgt(0,1,rot)
             left()
-            #set_left_speed(getValue(cmd[1]))
+            time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnLeft:":
             enable_encoders()
             print "rotate left ", cmd[1], " degrees"
-            #enc_tgt(1,0,36)
-            #fwd()
+            rot = getValue(cmd[1])/6
+            enc_tgt(1,0,rot)
             right()
-            #set_right_speed(speed)
+            time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == 'maxspeed:':
             print 'maxspeed'
             setSpeed(255) # 255 is the maximum speed of the gopigo
@@ -160,6 +162,7 @@ def runCommand(cmd):
         else: print "TODO:", cmd[0]
 
 def runScript(script):
+    setSpeed(current_speed)
     for index in range(len(script)):
         runCommand(script[index])
         time.sleep(DELAY_BETWEEN_COMMANDS)
@@ -178,6 +181,3 @@ if 'lists' in {x for x in data if x in 'lists'}:
 
 #x = raw_input('What is pushed (ex:"whenClicked"): ')
 findScripts("whenGreenFlag")
-#enc_tgt(1,0,9)
-
-#time.sleep(10)
