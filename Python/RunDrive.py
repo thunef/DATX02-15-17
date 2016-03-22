@@ -53,6 +53,11 @@ def getValue(cmd):
     if cmd[0] == 'randomFrom:to:':
         return randint(cmd[1],cmd[2])
         #us_dist()
+    if cmd[0] == 'getLine:ofList:':
+        print "okidok getting position", cmd[1], " from ", cmd[2]
+        tmp = lists[cmd[3]]
+        return tmp[cmd[1]]
+    
     return 0
 
 
@@ -81,10 +86,16 @@ def runCommand(cmd):
         # Motion
         if cmd[0] == "forward:":
             print "framAt" , cmd[1]
+<<<<<<< Updated upstream
             rot=getValue(cmd[1])
             enc_tgt(1,1,rot)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
                                     ## m2: 0 to disable targeting for motor 2, 1 to enable it
                                     ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+=======
+            #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
+            ## m2: 0 to disable targeting for motor 2, 1 to enable it
+            ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+>>>>>>> Stashed changes
             fwd()
             time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnRight:":
@@ -116,6 +127,14 @@ def runCommand(cmd):
         elif cmd[0] == "stopScripts":
             print "stopScripts"
             stop()  # gopigo
+        elif cmd[0] == 'led:on':
+            print "Both Leds on :)"
+            led_on(LED_L)
+            led_on(LED_R)
+        elif cmd[0] == 'led:off':
+            print "Both Leds off :)"
+            led_off(LED_L)
+            led_off(LED_R)
         # Control
         elif cmd[0] == "doRepeat":
             print "doRepeat\n"
@@ -158,7 +177,7 @@ def runCommand(cmd):
             print "mmokay ", cmd[3] , " add " , cmd[1] ," @",cmd[2]
             lists[cmd[3]].insert(cmd[2], getValue(cmd[1]))
         elif cmd[0] == 'wait:elapsed:from:':
-            time.sleep(cmd[1])
+            time.sleep(getValue(cmd[1]))
         else: print "TODO:", cmd[0]
 
 def runScript(script):

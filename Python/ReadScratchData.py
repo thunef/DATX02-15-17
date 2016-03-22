@@ -71,8 +71,8 @@ def runCommand(cmd):
         if cmd[0] == "forward:":
             print "framAt" , cmd[1]
             #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
-                                    ## m2: 0 to disable targeting for motor 2, 1 to enable it
-                                    ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+            ## m2: 0 to disable targeting for motor 2, 1 to enable it
+            ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
             #fwd()
         elif cmd[0] == "turnRight:":
             print "rotate right " , cmd[1], " degrees \n"
