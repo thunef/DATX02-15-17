@@ -57,7 +57,7 @@ def getValue(cmd):
         print "okidok getting position", cmd[1], " from ", cmd[2]
         tmp = lists[cmd[3]]
         return tmp[cmd[1]]
-    
+
     return 0
 
 
@@ -86,16 +86,10 @@ def runCommand(cmd):
         # Motion
         if cmd[0] == "forward:":
             print "framAt" , cmd[1]
-<<<<<<< Updated upstream
             rot=getValue(cmd[1])
             enc_tgt(1,1,rot)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
                                     ## m2: 0 to disable targeting for motor 2, 1 to enable it
                                     ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
-=======
-            #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
-            ## m2: 0 to disable targeting for motor 2, 1 to enable it
-            ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
->>>>>>> Stashed changes
             fwd()
             time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnRight:":
