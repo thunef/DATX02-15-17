@@ -14,6 +14,9 @@ DELAY_BETWEEN_COMMANDS = 0.5 #Sec
 DATE = datetime.datetime.now()
 DiffSince2000 = datetime.date.today() - datetime.date(2000, 01, 01)
 
+# hours, minutes, seconds
+timer_started = [0,0,0]
+
 ROTATIONTIME = 15 # For waiting on wheels to rotate
 
 archive = zipfile.ZipFile('drive.sb2', 'r')
@@ -26,6 +29,9 @@ variables = {}
 
 current_speed = 120
 
+def reset_timer():
+    now = time.localtime(time.time())
+    timer_started = [now[3], now[4], now[5]]
 
 # put the userdefined lists with the content of that
 # list in a container, each list keeps its name
@@ -46,8 +52,13 @@ def getValue(cmd):
     if cmd[0] == 'timestamp':
         return DiffSince2000.days
     if cmd[0] == 'timeAndDate':
+        DATE = datetime.datetime.now()
         if (cmd[1] == 'minute'):
             return DATE.minute
+        elif cmd[1] == 'second':
+            return DATE.second
+        elif cmd[1] == 'hour':
+            return DATE.hour
     if cmd[0] == 'readVariable':
         return variables[cmd[1]]
     if cmd[0] == 'randomFrom:to:':
@@ -64,10 +75,21 @@ def getValue(cmd):
 
     if cmd[0] == '%':
         return cmd[1] % cmd[2]
+
+    #returns time  since the timer started.
+    if cmd[0] == 'timer':
+        now = time.localtime(time.time())
+        return (now[3] - timer_started[0],
+                now[4] - timer_started[1],
+                now[5] - timer_started[2])
+
     return 0
 
 
 def isTrue(statement):
+    if statement[0] == 'not':
+        return isTrue(statement[1])
+
     a = getValue(statement[1])
     b = getValue(statement[2])
 
@@ -77,7 +99,6 @@ def isTrue(statement):
         return a < b
     elif statement[0] == '>':
         return a > b
-
 
 def setSpeed(s):
     #print "setting speed ", current_speed
@@ -172,6 +193,13 @@ def runCommand(cmd):
                 runScript(cmd[2])
             else:
                 runScript(cmd[3])
+        elif cmd[0] == 'servo:on':
+            enable_servo()
+        elif cmd[0] == 'servo:off':
+            disable_servo()
+        elif cmd[0] == 'servo:pos':
+            servo(cmd[1])
+
         # Data
         elif cmd[0] =='setVar:to:':
             print "setVar to: ", cmd[2], "\n"
@@ -190,6 +218,10 @@ def runCommand(cmd):
             lists[cmd[3]].insert(cmd[2], getValue(cmd[1]))
         elif cmd[0] == 'wait:elapsed:from:':
             time.sleep(getValue(cmd[1]))
+
+        # Timers
+        elif cmd[0] == 'timerReset':
+            reset_timer()
         else: print "TODO:", cmd[0]
 
 def runScript(script):
@@ -210,5 +242,6 @@ if 'variables' in {x for x in data if x in 'variables'}:
 if 'lists' in {x for x in data if x in 'lists'}:
     getLists(data['lists'])
 
+reset_timer()
 #x = raw_input('What is pushed (ex:"whenClicked"): ')
 findScripts("whenGreenFlag")
