@@ -114,13 +114,14 @@ public class Specs {
 	public static var commands:Array = [
 		// block specification					type, cat, opcode			default args (optional)
 		// motion
-		["move %n steps",						" ", 1, "forward:",					10],
+		["Forward %n steps [18/circuit]",						" ", 1, "forward:",					10],
+		["Backwards %n steps [18/circuit]",						" ", 1, "Backwards:",					10],
 		["Increase speed by %n ",						" ", 1, "accelerate:",					1],
 		["Decrease speed by %n ",						" ", 1, "retardate:",					1],
 		["Max speed",						" ", 1, "maxspeed:",					1],
 		["No speed",						" ", 1, "nospeed:",					1],
-		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				15],
-		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				15],
+		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				90],
+		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				90],
 		["--"],
 		//["point in direction %d.direction",		" ", 1, "heading:",					90],
 		//["point towards %m.spriteOrMouse",		" ", 1, "pointTowards:",			""],
@@ -143,8 +144,10 @@ public class Specs {
 		//["direction",							"r", 1, "heading"],
 
 		//Actions
-		["Turn on LED",								" ", 2, "led:on"],
-		["Turn off LED",								" ", 2, "led:off"],
+		["Turn on right LED",								" ", 2, "led:r:on"],
+		["Turn off right LED",								" ", 2, "led:r:off"],
+		["Turn on left LED",								" ", 2, "led:l:on"],
+		["Turn off left LED",								" ", 2, "led:l:off"],
 		["Turn on servo",								" ", 2, "servo:on"],
 		["Turn off servo",								" ", 2, "servo:off"],
 		["Set servo to position %n",								" ", 2, "servo:pos"],
