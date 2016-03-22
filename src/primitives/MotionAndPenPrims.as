@@ -45,7 +45,7 @@ public class MotionAndPenPrims {
 
 	public function addPrimsTo(primTable:Dictionary):void {
 		primTable["forward:"]			= primMove;
-		primTable["Backwards:"]			= primBack;
+		primTable["backwards:"]			= primBack;
 		primTable["accelerate:"]			= primAccelerate;
 		primTable["retardate:"]			= primRetardate;
 		primTable["maxspeed:"]			= primMaxSpeed;

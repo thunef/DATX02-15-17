@@ -115,7 +115,7 @@ public class Specs {
 		// block specification					type, cat, opcode			default args (optional)
 		// motion
 		["Forward %n steps [18/circuit]",						" ", 1, "forward:",					10],
-		["Backwards %n steps [18/circuit]",						" ", 1, "Backwards:",					10],
+		["Backwards %n steps [18/circuit]",						" ", 1, "backwards:",					10],
 		["Increase speed by %n ",						" ", 1, "accelerate:",					1],
 		["Decrease speed by %n ",						" ", 1, "retardate:",					1],
 		["Max speed",						" ", 1, "maxspeed:",					1],

@@ -94,11 +94,17 @@ def runCommand(cmd):
         if cmd[0] == "forward:":
             print "framAt" , cmd[1]
             rot=getValue(cmd[1])
-            enc_tgt(1,1,rot)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
-            ## m2: 0 to disable targeting for motor 2, 1 to enable it
-            ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
-            #enc_tgt(1,1,72)  ## m1: 0 to disable targeting for motor 1, 1 to enable it
+            enc_tgt(1,1,rot)    ## m1: 0 to disable targeting for motor 1, 1 to enable it
+                                ## m2: 0 to disable targeting for motor 2, 1 to enable it
+                                ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
+
             fwd()
+            time.sleep(rot/ROTATIONTIME)
+        if cmd[0] == "backwards:":
+            print "bakka" , cmd[1]
+            rot=getValue(cmd[1])
+            enc_tgt(1,1,rot)
+            bwd()
             time.sleep(rot/ROTATIONTIME)
         elif cmd[0] == "turnRight:":
             print "rotate right " , cmd[1], " degrees"
@@ -132,11 +138,9 @@ def runCommand(cmd):
         elif cmd[0] == 'led:l:on':
             print "Left Led on :)"
             led_on(LED_L)
-            led_on(LED_R)
         elif cmd[0] == 'led:l:off':
             print "Left Led off :)"
             led_off(LED_L)
-            led_off(LED_R)
         elif cmd[0] == 'led:r:on':
             print "Right Led on :)"
             led_on(LED_R)
