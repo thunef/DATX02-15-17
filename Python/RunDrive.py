@@ -58,6 +58,10 @@ def getValue(cmd):
         tmp = lists[cmd[3]]
         return tmp[cmd[1]]
 
+    if cmd[0] == 'lineCountOfList:':
+        tmp = lists[cmd[2]]
+        return tmp.length
+
     if cmd[0] == '%':
         return cmd[1] % cmd[2]
     return 0
