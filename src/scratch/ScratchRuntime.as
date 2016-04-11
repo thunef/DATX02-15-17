@@ -724,7 +724,16 @@ public class ScratchRuntime {
 	public function installEmptyProject():void {
 		app.saveForRevert(null, true);
 		app.oldWebsiteURL = '';
-		installProject(new ScratchStage());
+		//installProject(new ScratchStage());
+		var fileName:String, data:ByteArray;
+		var fileReference:FileReference = new FileReference(  );
+		var urlRequest:URLRequest = new URLRequest("http://thunef.github.io/DATX02-15-17/default.sb2");
+		fileReference.download(urlRequest);
+
+		fileName = fileReference.name;
+		data = fileReference.data;
+
+		installProjectFromFile(fileName, data);
 	}
 
 	public function installNewProject():void {
