@@ -151,7 +151,7 @@ public class TopBarPart extends UIPart {
 
 		// cursor tool buttons
 		var space:int = 3;
-		copyTool.x = app.isOffline ? 493 : 427;
+		copyTool.x =  493;
 		cutTool.x = copyTool.right() + space;
 		growTool.x = cutTool.right() + space;
 		shrinkTool.x = growTool.right() + space;
@@ -186,9 +186,9 @@ public class TopBarPart extends UIPart {
 	}
 
 	public function refresh():void {
-		if (app.isOffline) {
-			helpTool.visible = app.isOffline;
-		}
+
+		helpTool.visible = true;
+
 
 		if (Scratch.app.isExtensionDevMode) {
 			var hasExperimental:Boolean = app.extensionManager.hasExperimentalExtensions();

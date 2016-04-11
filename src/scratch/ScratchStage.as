@@ -91,7 +91,7 @@ public class ScratchStage extends ScratchObj {
 	public function setTempo(bpm:Number):void {
 		tempoBPM = Math.max(20, Math.min(bpm, 500));
 	}
-	
+
 	public function countdown(number:int=-1):void {
 		if (overlay) {
 			removeChild(overlay);
@@ -126,7 +126,7 @@ public class ScratchStage extends ScratchObj {
 		arrowText.x = 28;
 		arrowText.y = 328;
 	}
-	
+
 	private function makeLabel(s:String, fontSize:int):TextField {
 		var tf:TextField = new TextField();
 		tf.selectable = false;
@@ -278,7 +278,7 @@ public class ScratchStage extends ScratchObj {
 		m.addItem('save picture of stage', saveScreenshot);
 		return m;
 	}
-	
+
 	public function saveScreenData():BitmapData {
 		var bm:BitmapData = new BitmapData(STAGEW,STAGEH, false);
 		if (videoImage) videoImage.visible = false;
@@ -306,7 +306,7 @@ public class ScratchStage extends ScratchObj {
 		if (videoImage) videoImage.visible = true;
 		return bm;
 	}
-	
+
 	private function saveScreenshot():void {
 		var bitmapData:BitmapData = new BitmapData(STAGEW, STAGEH, true, 0);
 		bitmapData.draw(this);
@@ -771,14 +771,8 @@ public class ScratchStage extends ScratchObj {
 		}
 
 		delete info.userAgent;
-		if (Scratch.app.isOffline) {
-			info.userAgent = 'Scratch 2.0 Offline Editor';
-		}
-		else if (Scratch.app.jsEnabled) {
-			Scratch.app.externalCall('window.navigator.userAgent.toString', function(userAgent:String):void {
-				if (userAgent) info.userAgent = userAgent;
-			});
-		}
+		info.userAgent = 'Scratch 2.0';
+
 	}
 
 	public function updateListWatchers():void {
