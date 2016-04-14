@@ -123,7 +123,7 @@ public class Specs {
 		["Increase speed by %n ",						" ", 1, "accelerate:",					1],
 		["Decrease speed by %n ",						" ", 1, "retardate:",					1],
 		["Max speed",						" ", 1, "maxspeed:",					1],
-		["No speed",						" ", 1, "nospeed:",					1],
+		["Min speed",						" ", 1, "minspeed:",					1],
 		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				90],
 		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				90],
 		["--"],
