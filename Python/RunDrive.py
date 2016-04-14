@@ -29,6 +29,8 @@ variables = {}
 
 current_speed = 120
 
+min_speed = 50
+
 def reset_timer():
     now = time.localtime(time.time())
     timer_started = [now[3], now[4], now[5]]
@@ -149,9 +151,9 @@ def runCommand(cmd):
         elif cmd[0] == "retardate:":
             print "slowing down:" ,current_speed  ," with ", cmd[1]
             setSpeed(current_speed-getValue(cmd[1]))
-        elif cmd[0] == "nospeed:":
-            print "stoping"
-            setSpeed(0)
+        elif cmd[0] == "minspeed:":
+            print "min speed"
+            setSpeed(min_speed)
             ##stop()
         elif cmd[0] == "stopScripts":
             print "stopScripts"
