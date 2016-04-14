@@ -107,6 +107,10 @@ public class Specs {
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
 		if (name == "spider") icon = Resources.createBmp('spiderIcon');
+		if (name == "greenBall") icon = Resources.createBmp('greenIcon');
+		if (name == "blueBall") icon = Resources.createBmp('blueIcon');
+		if (name == "redBall") icon = Resources.createBmp('redIcon');
+		if (name == "yellowBall") icon = Resources.createBmp('yellowIcon');
 		if (icon != null) icon.scaleX = icon.scaleY = 0.5;
 		return icon;
 	}
@@ -233,13 +237,16 @@ public class Specs {
 		//["clear",								" ", 104, "clearPenTrails"],
 
 		// triggers
-		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
-		["when @spider clicked",				"h", 5, "whenSpider"],
+		//["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
+		["when @greenBall clicked",				"h", 5, "whenGreen"],
+		["when @blueBall clicked",				"h", 5, "whenBlue"],
+		["when @redBall clicked",				"h", 5, "whenRed"],
+		["when @yellowBall clicked",				"h", 5, "whenYellow"],
 		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
 		//["when this sprite clicked",			"h", 5, "whenClicked"],
 		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
 		["--"],
-		["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
+		//["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],  TODO
 		["--"],
 		//["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
 		//["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],

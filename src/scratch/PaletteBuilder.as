@@ -54,7 +54,7 @@ public class PaletteBuilder {
 
 	public static function strings():Array {
 		return [
-			'Stage selected:', 'No motion blocks',
+			'Make a sprite:', 'Bottom left corner',
 			'Make a Block', 'Make a List', 'Make a Variable',
 			'New List', 'List name', 'New Variable', 'Variable name',
 			'New Block', 'Add an Extension', 'when Stage clicked'];
@@ -73,9 +73,9 @@ public class PaletteBuilder {
 			var stageSpecific:Array = ['Control', 'Motion', 'Sensing'];
 			if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
 			if (catName == 'Motion' || 1==1) {
-				addItem(makeLabel(Translator.map('Stage selected:')));
+				addItem(makeLabel(Translator.map('Make a sprite:')));
 				nextY -= 6;
-				addItem(makeLabel(Translator.map('No motion blocks')));
+				addItem(makeLabel(Translator.map('Bottom left corner')));
 				return;
 			}
 		}
@@ -159,7 +159,7 @@ public class PaletteBuilder {
 	}
 
 	protected function addAddExtensionButton():void {
-		addItem(new Button(Translator.map('Add an Extension'), showAnExtension, false, '/help/studio/tips/blocks/add-an-extension/'));
+		//addItem(new Button(Translator.map('Add an Extension'), showAnExtension, false, '/help/studio/tips/blocks/add-an-extension/'));
 	}
 
 	private function showDataCategory():void {

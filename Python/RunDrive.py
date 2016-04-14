@@ -17,7 +17,7 @@ DiffSince2000 = datetime.date.today() - datetime.date(2000, 01, 01)
 # hours, minutes, seconds
 timer_started = [0,0,0]
 
-ROTATIONTIME = 15 # For waiting on wheels to rotate
+ROTATIONTIME = 14 # For waiting on wheels to rotate
 
 archive = zipfile.ZipFile('drive.sb2', 'r')
 data=json.loads(archive.read('project.json'))
@@ -243,5 +243,6 @@ if 'lists' in {x for x in data if x in 'lists'}:
     getLists(data['lists'])
 
 reset_timer()
+print "Voltage: " , volt()
 #x = raw_input('What is pushed (ex:"whenClicked"): ')
-findScripts("whenGreenFlag")
+findScripts("whenGreen")

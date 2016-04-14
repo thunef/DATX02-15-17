@@ -521,7 +521,7 @@ public class ScratchRuntime {
 
 	public function startGreenFlags(firstTime:Boolean = false):void {
 		function startIfGreenFlag(stack:Block, target:ScratchObj):void {
-			if (stack.op == 'whenGreenFlag') interp.toggleThread(stack, target);
+			if (stack.op == 'whenGreen') interp.toggleThread(stack, target);
 		}
 		stopAll();
 		lastAnswer = '';
