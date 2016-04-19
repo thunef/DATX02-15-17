@@ -48,38 +48,38 @@ def getVariables(json_variables):
         variables[name] = json_variables[k]['value']
 
 
-def getValue(cmd):
-    if isinstance( cmd, int ):
-        return cmd
-    if cmd[0] == 'timestamp':
+def getValue(block):
+    if isinstance( block, int ):
+        return block
+    if block[0] == 'timestamp':
         return DiffSince2000.days
-    if cmd[0] == 'timeAndDate':
+    if block[0] == 'timeAndDate':
         DATE = datetime.datetime.now()
-        if (cmd[1] == 'minute'):
+        if (block[1] == 'minute'):
             return DATE.minute
-        elif cmd[1] == 'second':
+        elif block[1] == 'second':
             return DATE.second
-        elif cmd[1] == 'hour':
+        elif block[1] == 'hour':
             return DATE.hour
-    if cmd[0] == 'readVariable':
-        return variables[cmd[1]]
-    if cmd[0] == 'randomFrom:to:':
-        return randint(cmd[1],cmd[2])
+    if block[0] == 'readVariable':
+        return variables[block[1]]
+    if block[0] == 'randomFrom:to:':
+        return randint(block[1],block[2])
         #us_dist()
-    if cmd[0] == 'getLine:ofList:':
-        print "okidok getting position", cmd[1], " from ", cmd[2]
-        tmp = lists[cmd[3]]
-        return tmp[cmd[1]]
+    if block[0] == 'getLine:ofList:':
+        print "okidok getting position", block[1], " from ", block[2]
+        tmp = lists[block[3]]
+        return tmp[block[1]]
 
-    if cmd[0] == 'lineCountOfList:':
-        tmp = lists[cmd[2]]
+    if block[0] == 'lineCountOfList:':
+        tmp = lists[block[2]]
         return tmp.length
 
-    if cmd[0] == '%':
-        return cmd[1] % cmd[2]
+    if block[0] == '%':
+        return block[1] % block[2]
 
     #returns time  since the timer started.
-    if cmd[0] == 'timer':
+    if block[0] == 'timer':
         now = time.localtime(time.time())
         return (now[3] - timer_started[0],
                 now[4] - timer_started[1],
@@ -109,134 +109,134 @@ def setSpeed(s):
     set_speed(current_speed)
     print "setting speed ", current_speed
 
-def runCommand(cmd):
+def executeBlock(block):
         print "speed: ", current_speed
         ##print "\nrunning:"
 
         # Motion
-        if cmd[0] == "forward:":
-            print "framAt" , cmd[1]
-            rot=getValue(cmd[1])
+        if block[0] == "forward:":
+            print "framAt" , block[1]
+            rot=getValue(block[1])
             enc_tgt(1,1,rot)    ## m1: 0 to disable targeting for motor 1, 1 to enable it
                                 ## m2: 0 to disable targeting for motor 2, 1 to enable it
                                 ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
 
             fwd()
             time.sleep(rot/ROTATIONTIME)
-        if cmd[0] == "backwards:":
-            print "bakka" , cmd[1]
-            rot=getValue(cmd[1])
+        if block[0] == "backwards:":
+            print "bakka" , block[1]
+            rot=getValue(block[1])
             enc_tgt(1,1,rot)
             bwd()
             time.sleep(rot/ROTATIONTIME)
-        elif cmd[0] == "turnRight:":
-            print "rotate right " , cmd[1], " degrees"
-            rot = getValue(cmd[1])/6
+        elif block[0] == "turnRight:":
+            print "rotate right " , block[1], " degrees"
+            rot = getValue(block[1])/6
             enc_tgt(0,1,rot)
             left()
             time.sleep(rot/ROTATIONTIME)
-        elif cmd[0] == "turnLeft:":
+        elif block[0] == "turnLeft:":
             enable_encoders()
-            print "rotate left ", cmd[1], " degrees"
-            rot = getValue(cmd[1])/6
+            print "rotate left ", block[1], " degrees"
+            rot = getValue(block[1])/6
             enc_tgt(1,0,rot)
             right()
             time.sleep(rot/ROTATIONTIME)
-        elif cmd[0] == 'maxspeed:':
+        elif block[0] == 'maxspeed:':
             print 'maxspeed'
             setSpeed(255) # 255 is the maximum speed of the gopigo
-        elif cmd[0] == "accelerate:":
-            print "IncSpeed: ",current_speed  ," with ", cmd[1]
-            setSpeed(current_speed+getValue(cmd[1]))
-        elif cmd[0] == "retardate:":
-            print "slowing down:" ,current_speed  ," with ", cmd[1]
-            setSpeed(current_speed-getValue(cmd[1]))
-        elif cmd[0] == "minspeed:":
+        elif block[0] == "accelerate:":
+            print "IncSpeed: ",current_speed  ," with ", block[1]
+            setSpeed(current_speed+getValue(block[1]))
+        elif block[0] == "retardate:":
+            print "slowing down:" ,current_speed  ," with ", block[1]
+            setSpeed(current_speed-getValue(block[1]))
+        elif block[0] == "minspeed:":
             print "min speed"
             setSpeed(min_speed)
             ##stop()
-        elif cmd[0] == "stopScripts":
+        elif block[0] == "stopScripts":
             print "stopScripts"
             stop()  # gopigo
-        elif cmd[0] == 'led:l:on':
+        elif block[0] == 'led:l:on':
             print "Left Led on :)"
             led_on(LED_L)
-        elif cmd[0] == 'led:l:off':
+        elif block[0] == 'led:l:off':
             print "Left Led off :)"
             led_off(LED_L)
-        elif cmd[0] == 'led:r:on':
+        elif block[0] == 'led:r:on':
             print "Right Led on :)"
             led_on(LED_R)
-        elif cmd[0] == 'led:r:off':
+        elif block[0] == 'led:r:off':
             print "Right Led off :)"
             led_off(LED_R)
         # Control
-        elif cmd[0] == "doRepeat":
+        elif block[0] == "doRepeat":
             print "doRepeat\n"
-            for index in range(getValue(cmd[1])):
-                runScript(cmd[2])
-        elif cmd[0] == "doUntil":
+            for index in range(getValue(block[1])):
+                executeChunkOfBlocks(block[2])
+        elif block[0] == "doUntil":
             print "doUntil\n"
-            while isTrue(cmd[1]) == False:
-                runScript(cmd[2])
-        elif cmd[0] == "doForever":
+            while isTrue(block[1]) == False:
+                executeChunkOfBlocks(block[2])
+        elif block[0] == "doForever":
             print "going to loop forever!!"
-            print cmd[1]
+            print block[1]
             while True:
-                runScript(cmd[1])
-        elif cmd[0] == 'doIf':
+                executeChunkOfBlocks(block[1])
+        elif block[0] == 'doIf':
             print "doIf\n"
-            print cmd[1]
-            if isTrue(cmd[1]) :
-                runScript(cmd[2])
-        elif cmd[0] == 'doIfElse':
+            print block[1]
+            if isTrue(block[1]) :
+                executeChunkOfBlocks(block[2])
+        elif block[0] == 'doIfElse':
             print "doIfElse\n"
-            if isTrue(cmd[1]):
-                runScript(cmd[2])
+            if isTrue(block[1]):
+                executeChunkOfBlocks(block[2])
             else:
-                runScript(cmd[3])
-        elif cmd[0] == 'servo:on':
+                executeChunkOfBlocks(block[3])
+        elif block[0] == 'servo:on':
             enable_servo()
-        elif cmd[0] == 'servo:off':
+        elif block[0] == 'servo:off':
             disable_servo()
-        elif cmd[0] == 'servo:pos':
-            servo(cmd[1])
+        elif block[0] == 'servo:pos':
+            servo(block[1])
 
         # Data
-        elif cmd[0] =='setVar:to:':
-            print "setVar to: ", cmd[2], "\n"
-            print variables[cmd[1]],"  becomes  ",cmd[1] , " -- is it?"
-            variables[cmd[1]] = getValue(cmd[2])
-            print variables[cmd[1]]
-        elif cmd[0] =='changeVar:by:':
-            print variables[cmd[1]]," change by ",cmd[2], " -- is it"
-            variables[cmd[1]] += getValue(cmd[2])
-            print variables[cmd[1]]
-        elif cmd[0] =='append:toList:':
-            print "mmokay ", cmd[2] , " add " , cmd[1]
-            lists[cmd[2]].append(getValue(cmd[1]))
-        elif cmd[0] =='insert:at:ofList:':
-            print "mmokay ", cmd[3] , " add " , cmd[1] ," @",cmd[2]
-            lists[cmd[3]].insert(cmd[2], getValue(cmd[1]))
-        elif cmd[0] == 'wait:elapsed:from:':
-            time.sleep(getValue(cmd[1]))
+        elif block[0] =='setVar:to:':
+            print "setVar to: ", block[2], "\n"
+            print variables[block[1]],"  becomes  ",block[1] , " -- is it?"
+            variables[block[1]] = getValue(block[2])
+            print variables[block[1]]
+        elif block[0] =='changeVar:by:':
+            print variables[block[1]]," change by ",block[2], " -- is it"
+            variables[block[1]] += getValue(block[2])
+            print variables[block[1]]
+        elif block[0] =='append:toList:':
+            print "mmokay ", block[2] , " add " , block[1]
+            lists[block[2]].append(getValue(block[1]))
+        elif block[0] =='insert:at:ofList:':
+            print "mmokay ", block[3] , " add " , block[1] ," @",block[2]
+            lists[block[3]].insert(block[2], getValue(block[1]))
+        elif block[0] == 'wait:elapsed:from:':
+            time.sleep(getValue(block[1]))
 
         # Timers
-        elif cmd[0] == 'timerReset':
+        elif block[0] == 'timerReset':
             reset_timer()
-        else: print "TODO:", cmd[0]
+        else: print "TODO:", block[0]
 
-def runScript(script):
+def executeChunkOfBlocks(chunk):
     setSpeed(current_speed)
-    for index in range(len(script)):
-        runCommand(script[index])
+    for index in range(len(chunk)):
+        executeBlock(chunk[index])
         time.sleep(DELAY_BETWEEN_COMMANDS)
 
-def findScripts(whichOne):
+def buttonPress(whichOne):
     for index in range(len(scripts)):
         #First 2 rows is gui posision, but script starts at [2]
         if scripts[index][2][0][0] == whichOne: #First(0) row is the event
-            runScript(scripts[index][2])
+            executeChunkOfBlocks(scripts[index][2])
 
 if 'variables' in {x for x in data if x in 'variables'}:
     getVariables(data['variables'])
@@ -247,4 +247,4 @@ if 'lists' in {x for x in data if x in 'lists'}:
 reset_timer()
 print "Voltage: " , volt()
 #x = raw_input('What is pushed (ex:"whenClicked"): ')
-findScripts("whenGreen")
+buttonPress("whenGreen")
