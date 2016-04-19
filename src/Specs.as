@@ -60,8 +60,8 @@ public class Specs {
 	public static const categories:Array = [
 	 // id   category name	color
 		[0,  "undefined",	0xD42828],
-		[5,  "Events",		0xc88330],
-		[1,  "Motion",		0x4a6cd4],
+		[1,  "Events",		0xff69b4],//#  c88330
+		[5,  "Motion",		0x4a6cd4],
 		[2,  "Actions",		0x8a55d7],
 		//[3,  "Sound",		0xbb42c3],
 		//[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
@@ -118,14 +118,14 @@ public class Specs {
 	public static var commands:Array = [
 		// block specification					type, cat, opcode			default args (optional)
 		// motion
-		["Forward %n steps [18/circuit]",						" ", 1, "forward:",					10],
-		["Backwards %n steps [18/circuit]",						" ", 1, "backwards:",					10],
-		["Increase speed by %n ",						" ", 1, "accelerate:",					1],
-		["Decrease speed by %n ",						" ", 1, "retardate:",					1],
-		["Max speed",						" ", 1, "maxspeed:",					1],
-		["Min speed",						" ", 1, "minspeed:",					1],
-		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				90],
-		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				90],
+		["Forward %n steps [18/circuit]",						" ", 5, "forward:",					10],
+		["Backwards %n steps [18/circuit]",						" ", 5, "backwards:",					10],
+		["Increase speed by %n ",						" ", 5, "accelerate:",					1],
+		["Decrease speed by %n ",						" ", 5, "retardate:",					1],
+		["Max speed",						" ", 5, "maxspeed:",					1],
+		["Min speed",						" ", 5, "minspeed:",					1],
+		["turn @turnRight %n degrees",			" ", 5, "turnRight:",				90],
+		["turn @turnLeft %n degrees",			" ", 5, "turnLeft:",				90],
 		["--"],
 		//["point in direction %d.direction",		" ", 1, "heading:",					90],
 		//["point towards %m.spriteOrMouse",		" ", 1, "pointTowards:",			""],
@@ -237,14 +237,14 @@ public class Specs {
 		//["clear",								" ", 104, "clearPenTrails"],
 
 		// triggers
-		//["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
-		["when @greenBall clicked",				"h", 5, "whenGreen"],
-		["when @blueBall clicked",				"h", 5, "whenBlue"],
-		["when @redBall clicked",				"h", 5, "whenRed"],
-		["when @yellowBall clicked",				"h", 5, "whenYellow"],
-		//["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
-		//["when this sprite clicked",			"h", 5, "whenClicked"],
-		//["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
+		//["when @greenFlag clicked",				"h", 1, "whenGreenFlag"],
+		["When @greenBall clicked",				"h", 1, "whenGreen"],
+		["When @blueBall clicked",				"h", 1, "whenBlue"],
+		//["when @redBall clicked",				"h", 1, "whenRed"],
+		["When @yellowBall clicked",				"h", 1, "whenYellow"],
+		//["when %m.key key pressed",				"h", 1, "whenKeyPressed", 		"space"],
+		//["when this sprite clicked",			"h", 1, "whenClicked"],
+		//["when backdrop switches to %m.backdrop", "h", 1, "whenSceneStarts", 	"backdrop1"],
 		["--"],
 		//["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],  TODO
 		["--"],
