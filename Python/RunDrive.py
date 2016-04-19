@@ -5,10 +5,20 @@ import atexit
 import json
 import time
 import datetime
+import RPi.GPIO as GPIO
 from pprint import pprint
 from random import randint
 from gopigo import *
 atexit.register(stop)
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(20, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 DELAY_BETWEEN_COMMANDS = 0.5 #Sec
 DATE = datetime.datetime.now()
@@ -246,5 +256,31 @@ if 'lists' in {x for x in data if x in 'lists'}:
 
 reset_timer()
 print "Voltage: " , volt()
-#x = raw_input('What is pushed (ex:"whenClicked"): ')
-buttonPress("whenGreen")
+
+
+def green_callback(channel):
+    print "whenGreen"
+    buttonPress("whenGreen")
+
+def blue_callback(channel):
+    print "whenBlue"
+    buttonPress("whenBlue")
+
+def yellow_callback(channel):
+    print "whenYellow"
+    buttonPress("whenYellow")
+    
+GPIO.add_event_detect(20, GPIO.FALLING, callback=green_callback, bouncetime=300)
+
+GPIO.add_event_detect(21, GPIO.FALLING, callback=blue_callback, bouncetime=300)
+
+GPIO.add_event_detect(26, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
+
+try:
+    print "Waiting for rising edge on port 16"
+    GPIO.wait_for_edge(16, GPIO.FALLING)
+    print "Rising edge detected on port 16. Here endeth the third lesson."
+
+except KeyboardInterrupt:
+    GPIO.cleanup()       # clean up GPIO on CTRL+C exit
+GPIO.cleanup()           # clean up GPIO on normal exit
