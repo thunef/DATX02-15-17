@@ -71,13 +71,13 @@ public class PaletteBuilder {
 		if (app.viewedObj() && app.viewedObj().isStage) {
 			// The stage has different blocks for some categories:
 			var stageSpecific:Array = ['Control', 'Motion', 'Sensing'];
-			if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
-			if (catName == 'Motion' || 1==1) {
+			//if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
+			/*if (catName == 'Motion') {
 				addItem(makeLabel(Translator.map('Make a sprite:')));
 				nextY -= 6;
 				addItem(makeLabel(Translator.map('Bottom left corner')));
 				return;
-			}
+			}*/
 		}
 		if (selectedCategory == Specs.dataCategory) return showDataCategory();
 		if (selectedCategory == Specs.myBlocksCategory) return showMyBlocksPalette(shiftKey);

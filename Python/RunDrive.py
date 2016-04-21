@@ -5,6 +5,7 @@ import atexit
 import json
 import time
 import datetime
+import os
 import RPi.GPIO as GPIO
 from pprint import pprint
 from random import randint
@@ -20,7 +21,7 @@ GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
-DELAY_BETWEEN_COMMANDS = 0.5 #Sec
+DELAY_BETWEEN_COMMANDS = 0.1 #Sec
 DATE = datetime.datetime.now()
 DiffSince2000 = datetime.date.today() - datetime.date(2000, 01, 01)
 
@@ -29,9 +30,21 @@ timer_started = [0,0,0]
 
 ROTATIONTIME = 14 # For waiting on wheels to rotate
 
-archive = zipfile.ZipFile('drive.sb2', 'r')
-data=json.loads(archive.read('project.json'))
+os.system("sudo mount -a")
 
+loaded = False
+while loaded == False:
+    try:
+      #archive = zipfile.ZipFile('/home/pi/python/drive.sb2', 'r')
+      archive = zipfile.ZipFile('/mnt/usbdrive/drive.sb2', 'r')
+      data=json.loads(archive.read('project.json'))
+      loaded = True
+    except:
+      print "Failing"
+      time.sleep(3)
+      pass
+
+loaded = False
 scripts = data['children'][0]['scripts']
 
 lists     = {}
@@ -59,7 +72,13 @@ def getVariables(json_variables):
 
 
 def getValue(block):
-    if isinstance( block, int ):
+    print "value of ", block, " type", type(block)
+
+    if type(block) is unicode:
+        return int(block)
+    if type(block) is int:
+        return block
+    if type(block) is float:
         return block
     if block[0] == 'timestamp':
         return DiffSince2000.days
@@ -120,7 +139,7 @@ def setSpeed(s):
     print "setting speed ", current_speed
 
 def executeBlock(block):
-        print "speed: ", current_speed
+        #print "speed: ", current_speed
         ##print "\nrunning:"
 
         # Motion
@@ -133,7 +152,7 @@ def executeBlock(block):
 
             fwd()
             time.sleep(rot/ROTATIONTIME)
-        if block[0] == "backwards:":
+        elif block[0] == "backwards:":
             print "bakka" , block[1]
             rot=getValue(block[1])
             enc_tgt(1,1,rot)
@@ -141,14 +160,14 @@ def executeBlock(block):
             time.sleep(rot/ROTATIONTIME)
         elif block[0] == "turnRight:":
             print "rotate right " , block[1], " degrees"
-            rot = getValue(block[1])/6
+            rot = int(getValue(block[1])/5.5)
             enc_tgt(0,1,rot)
             left()
             time.sleep(rot/ROTATIONTIME)
         elif block[0] == "turnLeft:":
             enable_encoders()
             print "rotate left ", block[1], " degrees"
-            rot = getValue(block[1])/6
+            rot = int(getValue(block[1])/5.5)
             enc_tgt(1,0,rot)
             right()
             time.sleep(rot/ROTATIONTIME)
@@ -214,10 +233,9 @@ def executeBlock(block):
 
         # Data
         elif block[0] =='setVar:to:':
-            print "setVar to: ", block[2], "\n"
-            print variables[block[1]],"  becomes  ",block[1] , " -- is it?"
+            print "setVar ",block[1], " to: ", block[2], "\n"
             variables[block[1]] = getValue(block[2])
-            print variables[block[1]]
+            print block[1] , " === " , variables[block[1]]
         elif block[0] =='changeVar:by:':
             print variables[block[1]]," change by ",block[2], " -- is it"
             variables[block[1]] += getValue(block[2])
@@ -248,6 +266,7 @@ def buttonPress(whichOne):
         if scripts[index][2][0][0] == whichOne: #First(0) row is the event
             executeChunkOfBlocks(scripts[index][2])
 
+
 if 'variables' in {x for x in data if x in 'variables'}:
     getVariables(data['variables'])
 
@@ -259,27 +278,43 @@ print "Voltage: " , volt()
 
 
 def green_callback(channel):
-    print "whenGreen"
+    print "Press Green ----------------------------------"
+    GPIO.remove_event_detect(21)
     buttonPress("whenGreen")
+    GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
 
 def blue_callback(channel):
-    print "whenBlue"
+    print "Press Blue ----------------------------------"
+    GPIO.remove_event_detect(26)
     buttonPress("whenBlue")
+    GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
 
 def yellow_callback(channel):
-    print "whenYellow"
+    print "Press Yellow ----------------------------------"
+    GPIO.remove_event_detect(16)
     buttonPress("whenYellow")
-    
-GPIO.add_event_detect(20, GPIO.FALLING, callback=green_callback, bouncetime=300)
+    GPIO.add_event_detect(16, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
 
-GPIO.add_event_detect(21, GPIO.FALLING, callback=blue_callback, bouncetime=300)
+GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
 
-GPIO.add_event_detect(26, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
+GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
+
+GPIO.add_event_detect(16, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
 
 try:
-    print "Waiting for rising edge on port 16"
-    GPIO.wait_for_edge(16, GPIO.FALLING)
-    print "Rising edge detected on port 16. Here endeth the third lesson."
+    led_on(LED_L)
+    led_on(LED_R)
+    print "Waiting for input"
+    GPIO.wait_for_edge(20, GPIO.FALLING)
+    print "Here endeth the program.\n"
+
+    led_off(LED_L)
+    led_off(LED_R)
+    args = sys.argv[:]
+
+    args.insert(0, sys.executable)
+
+    os.execv(sys.executable, args)
 
 except KeyboardInterrupt:
     GPIO.cleanup()       # clean up GPIO on CTRL+C exit

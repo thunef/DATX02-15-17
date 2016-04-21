@@ -79,7 +79,7 @@ public class ScriptsPart extends UIPart {
 		scriptsFrame = new ScrollFrame();
 		scriptsFrame.setContents(scriptsPane);
 		addChild(scriptsFrame);
-		
+
 		return scriptsPane;
 	}
 
@@ -134,7 +134,7 @@ public class ScriptsPart extends UIPart {
 		for (var i:int = 0; i < app.palette.numChildren; i++) {
 			var indicator:IndicatorLight = app.palette.getChildAt(i) as IndicatorLight;
 			if (indicator) app.extensionManager.updateIndicator(indicator, indicator.target);
-		}		
+		}
 		lastUpdateTime = getTimer();
 	}
 
@@ -172,6 +172,7 @@ public class ScriptsPart extends UIPart {
 		spriteWatermark.y = scriptsFrame.y + 10;
 		xyDisplay.x = spriteWatermark.x + 1;
 		xyDisplay.y = spriteWatermark.y + 43;
+
 	}
 
 	private function redraw():void {
