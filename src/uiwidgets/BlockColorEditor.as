@@ -44,7 +44,7 @@ public class BlockColorEditor extends Sprite {
 		addCategorySelector();
 		addBlockShape();
 		addHSVControls();
-		selectCategory('Events');
+		selectCategory('Buttons');
 	}
 
 	private function setWidthHeight(w:int, h:int):void {

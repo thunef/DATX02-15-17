@@ -60,7 +60,7 @@ public class Specs {
 	public static const categories:Array = [
 	 // id   category name	color
 		[0,  "undefined",	0xD42828],
-		[1,  "Events",		0xff69b4],//#  c88330
+		[1,  "Buttons",		0xff69b4],//#  c88330
 		[5,  "Motion",		0x4a6cd4],
 		[2,  "Actions",		0x8a55d7],
 		//[3,  "Sound",		0xbb42c3],

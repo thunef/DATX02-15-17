@@ -32,7 +32,7 @@ package ui {
 public class PaletteSelector extends Sprite {
 
 	private static const categories:Array = [
-		'Events','Motion', 'Data', 'Actions', // column 1
+		'Buttons','Motion', 'Data', 'Actions', // column 1
 		'Control','Sensing','Operators', 'More Blocks']; // column 2
 
 	public var selectedCategory:int = 0;
