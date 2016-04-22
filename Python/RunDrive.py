@@ -45,7 +45,7 @@ while loaded == False:
       pass
 
 loaded = False
-scripts = data['children'][0]['scripts']
+scripts = data['scripts']
 
 lists     = {}
 variables = {}
@@ -261,10 +261,18 @@ def executeChunkOfBlocks(chunk):
         time.sleep(DELAY_BETWEEN_COMMANDS)
 
 def buttonPress(whichOne):
+    GPIO.remove_event_detect(21)
+    GPIO.remove_event_detect(26)
+    GPIO.remove_event_detect(16)
+
     for index in range(len(scripts)):
         #First 2 rows is gui posision, but script starts at [2]
         if scripts[index][2][0][0] == whichOne: #First(0) row is the event
             executeChunkOfBlocks(scripts[index][2])
+    GPIO.add_event_detect(16, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
+    GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
+    GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
+
 
 
 if 'variables' in {x for x in data if x in 'variables'}:
@@ -279,27 +287,19 @@ print "Voltage: " , volt()
 
 def green_callback(channel):
     print "Press Green ----------------------------------"
-    GPIO.remove_event_detect(21)
     buttonPress("whenGreen")
-    GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
 
 def blue_callback(channel):
     print "Press Blue ----------------------------------"
-    GPIO.remove_event_detect(26)
     buttonPress("whenBlue")
-    GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
 
 def yellow_callback(channel):
     print "Press Yellow ----------------------------------"
-    GPIO.remove_event_detect(16)
     buttonPress("whenYellow")
-    GPIO.add_event_detect(16, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
-
-GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
-
-GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
 
 GPIO.add_event_detect(16, GPIO.FALLING, callback=yellow_callback, bouncetime=300)
+GPIO.add_event_detect(26, GPIO.FALLING, callback=blue_callback, bouncetime=300)
+GPIO.add_event_detect(21, GPIO.FALLING, callback=green_callback, bouncetime=300)
 
 try:
     led_on(LED_L)
