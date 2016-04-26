@@ -6,6 +6,7 @@ import json
 import time
 import datetime
 import os
+import math
 import RPi.GPIO as GPIO
 from pprint import pprint
 from random import randint
@@ -71,6 +72,34 @@ def getVariables(json_variables):
         variables[name] = json_variables[k]['value']
 
 
+def computeFunction(func, value):
+    if func == "floor":
+        return math.floor(value)
+    if func == "ceiling":
+        return math.floor(value+1)
+    if func == "abs":
+        return abs(value)
+    if func == "sin":
+        return math.sin(value)
+    if func == "cos":
+        return math.cos(value)
+    if func == "tan":
+        return math.tan(value)
+    if func == "asin":
+        return math.asin(value)
+    if func == "acos":
+        return math.acos(value)
+    if func == "ln":
+        return math.log(value)
+    if func == "log":
+        return math.log(value) / math.log(10)
+    if func == "e ^":
+        return math.pow(math.e, value)
+    if func == "10 ^":
+        return math.pow(10 ,value)
+
+
+
 def getValue(block):
     print "value of ", block, " type", type(block)
 
@@ -80,23 +109,45 @@ def getValue(block):
         return block
     if type(block) is float:
         return block
+    if block[0] == '%':
+        return getValue(block[1]) % getValue(block[2])
+    if block[0] == '+':
+        return getValue(block[1]) + getValue(block[2])
+    if block[0] == '-':
+        return getValue(block[1]) - getValue(block[2])
+    if block[0] == '*':
+        return getValue(block[1]) * getValue(block[2])
+    if block[0] == '\/':
+        return getValue(block[1]) / getValue(block[2])
+    if block[0] == 'rounded':
+        return math.round(getValue(block[1]))
+    if block[0] == 'computeFunction:of:':
+        return computeFunction(block[1], getValue(block[2]))
     if block[0] == 'timestamp':
         return DiffSince2000.days
     if block[0] == 'timeAndDate':
         DATE = datetime.datetime.now()
-        if (block[1] == 'minute'):
+        if block[1] == 'minute':
             return DATE.minute
         elif block[1] == 'second':
             return DATE.second
         elif block[1] == 'hour':
             return DATE.hour
+        elif block[1] == 'day of week':
+            return datetime.datetime.today().weekday()
+        elif block[1] == 'date':
+            return DATE.day
+        elif block[1] == 'month':
+            return DATE.month
+        elif block[1] == 'year':
+            return DATE.year
     if block[0] == 'readVariable':
         return variables[block[1]]
     if block[0] == 'randomFrom:to:':
         return randint(block[1],block[2])
         #us_dist()
     if block[0] == 'getLine:ofList:':
-        print "okidok getting position", block[1], " from ", block[2]
+        #print "okidok getting position", block[1], " from ", block[2]
         tmp = lists[block[3]]
         return tmp[block[1]]
 
@@ -118,8 +169,17 @@ def getValue(block):
 
 
 def isTrue(statement):
+    if statement == "False":
+        return False
+    elif statement == "True":
+        return True
+
     if statement[0] == 'not':
-        return isTrue(statement[1])
+        return isTrue(statement[1]) == False
+    elif statement[0] == '&':
+        return isTrue(statement[1]) and isTrue(statement[2])
+    elif statement[0] == '|':
+        return isTrue(statement[1]) or isTrue(statement[2])
 
     a = getValue(statement[1])
     b = getValue(statement[2])
