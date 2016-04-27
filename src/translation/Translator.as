@@ -57,7 +57,7 @@ public class Translator {
 				}
 			}
 		}
-		languages = [['en', 'English']]; // English is always the first entry
+		languages = [['en', 'English'],['se', 'Swedish']]; // English is always the first entry
 		Scratch.app.server.getLanguageList(saveLanguageList);
 	}
 
@@ -70,14 +70,114 @@ public class Translator {
 			}
 			Scratch.app.translationChanged();
 		}
-		
+
 		dictionary = {}; // default to English (empty dictionary) if there's no .po file
 		setFontsFor('en');
 		if ('en' == lang) Scratch.app.translationChanged(); // there is no .po file English
-		else Scratch.app.server.getPOFile(lang, gotPOFile);
+		else if ('se' == lang ) {
+			var rader:Array = [
+													'msgid\"Buttons\"',			'msgstr\"Knappar\"',
+													'msgid\"Motion\"',			'msgstr\"Rörelser\"',
+													'msgid\"Actions\"',			'msgstr\"Lampor\"',
+													'msgid\"Control\"',			'msgstr\"Kontrollera\"',
+													'msgid\"Sensing\"',			'msgstr\"Värden\"',
+													'msgid\"Operators\"',		'msgstr\"Operatorer\"',
+													'msgid\"More Blocks\"',	'msgstr\"Egna block\"',
+													'msgid\"When @greenBall clicked\"',				'msgstr\"När @greenBall trycks på\"',
+													'msgid\"When @blueBall clicked\"',				'msgstr\"När @blueBall trycks på\"',
+													'msgid\"When @yellowBall clicked\"',				'msgstr\"När @yellowBall trycks på\"',
+													'msgid\"Increase speed by %n \"',				'msgstr\"öka hastigheten med %n\"',
+													'msgid\"Decrease speed by %n \"',				'msgstr\"minska hastigheten med %n\"',
+													'msgid\"Forward %n steps [18/circuit]\"',			'msgstr\"framåt %n steg [18/varv]\"',
+													'msgid\"Backwards %n steps [18/circuit]\"',			'msgstr\"backa %n steg [18/varv]\"',
+													'msgid\"Max speed\"',			'msgstr\"Maximala hastigheten\"',
+													'msgid\"Min speed\"',			'msgstr\"Minimala hastigheten\"',
+													'msgid\"turn @turnRight %n degrees\"',			'msgstr\"rotera @turnLeft %n grader\"',
+													'msgid\"turn @turnLeft %n degrees\"',			'msgstr\"rotera @turnLeft %n grader\"',
+													'msgid\"Turn on right LED\"',			'msgstr\"tänd högra LED-lampan\"',
+													'msgid\"Turn off right LED\"',			'msgstr\"släck högra LED-lampan\"',
+													'msgid\"Turn on left LED\"',			'msgstr\"tänd vänstra LED-lampan\"',
+													'msgid\"Turn off left LED\"',			'msgstr\"släck vänstra LED-lampan\"',
+													'msgid\"wait %n secs\"',			'msgstr\"vänta %n sekunder\"',
+													'msgid\"repeat %n\"',			'msgstr\"upprepa %n gånger\"',
+													'msgid\"forever\"',			'msgstr\"upprepa för alltid\"',
+													'msgid\"if %b then\"',			'msgstr\"om %b stämmer\"',
+													'msgid\"else\"',			'msgstr\"annars\"',
+													'msgid\"define\"',			'msgstr\"Definiera\"',
+													'msgid\"wait until %b\"',			'msgstr\"vänta tills %b stämmer\"',
+													'msgid\"repeat until %b\"',			'msgstr\"upprepa tills %b stämmer\"',
+													'msgid\"distance to object \"',			'msgstr\"avstånd till objekt\"',
+													'msgid\"timer\"',			'msgstr\"tidtagarurstid\"',
+													'msgid\"reset timer\"',			'msgstr\"nollställ tidtagarur\"',
+													'msgid\"current %m.timeAndDate\"',			'msgstr\"aktuell %m.timeAndDate\"',
+													'msgid\"year\"',			'msgstr\"år\"',
+													'msgid\"month\"',			'msgstr\"månad\"',
+													'msgid\"date\"',			'msgstr\"dag i månaden\"',
+													'msgid\"day of week\"',			'msgstr\"dag i veckan\"',
+													'msgid\"hour\"',			'msgstr\"timme\"',
+													'msgid\"minute\"',			'msgstr\"minut\"',
+													'msgid\"second\"',			'msgstr\"sekund\"',
+													'msgid\"pick random %n to %n\"',			'msgstr\"slumptal %n till %n\"',
+													'msgid\"%b and %b"\"',			'msgstr\"%b och %b stämmer"\"',
+													'msgid\"%b or %b"\"',			'msgstr\"%b eller %b stämmer"\"',
+													'msgid\"not %b\"',			'msgstr\"%b stämmer inte\"',
+													'msgid\"round %n\"',			'msgstr\"avrunda %n\"',
+													'msgid\"%m.mathOp of %n\"',			'msgstr\"%m.mathOp av %n\"',
+													'msgid\"set %m.var to %n\"',			'msgstr\"sätt %m.var till %s\"',
+													'msgid\"change %m.var by %n\"',			'msgstr\"ändra %m.var till %n\"',
+													'msgid\"days since 2000\"',			'msgstr\"dagar sedan milleniumskiftet\"',
+													'msgid\"Make a Block\"',			'msgstr\"Skapa ett block\"',
+													'msgid\"Make a Variable\"',			'msgstr\"Skapa en variabel\"',
+													'msgid\"Make a List\"',			'msgstr\"Skapa en lista\"',
+													'msgid\"New Block\"',			'msgstr\"Nytt block\"',
+													'msgid\"Options\"',			'msgstr\"Alternativ\"',
+													'msgid\"Cancel\"',			'msgstr\"Avbryt\"',
+													'msgid\"Add number input:\"',			'msgstr\"Lägg till siffervärde:\"',
+													'msgid\"Add boolean input:\\"',			'msgstr\"Lägg till boolskt värde\"',
+													'msgid\"Add label text:\\"',			'msgstr\"Lägg till etikettext\"',
+													'msgid\"Variable name\"',			'msgstr\"Variabelnamn\"',
+													'msgid\"New Variable\"',			'msgstr\"Ny Variabel\"',
+													'msgid\"New List\"',			'msgstr\"Ny Lista\"',
+													'msgid\"List name\"',			'msgstr\"Listnamn\"',
+													'msgid\"File\"',			'msgstr\"Arkiv\"',
+													'msgid\"Edit\"',			'msgstr\"Redigera\"',
+													'msgid\"New\"',			'msgstr\"Nytt\"',
+													'msgid\"Load Project\"',			'msgstr\"Ladda upp från din dator\"',
+													'msgid\"Save Project\"',			'msgstr\"Ladda ner till din dator eller usb-minnet för Pedagogo\"',
+													'msgid\"Undelete\"',			'msgstr\"Återta\"',
+													'msgid\"Edit block colors\"',			'msgstr\"Ändra blockfärger\"',
+													'msgid\"Edit Block Colors\"',			'msgstr\"Ändra blockfärger\"',
+													'msgid\"duplicate\"',			'msgstr\"Skapa kopia\"',
+													'msgid\"Duplicate\"',			'msgstr\"Skapa kopia\"',
+													'msgid\"delete\"',			'msgstr\"Ta bort\"',
+													'msgid\"Delete\"',			'msgstr\"Ta bort\"',
+													'msgid\"Load\"',			'msgstr\"Ladda \"',
+													'msgid\"Save\"',			'msgstr\" Spara\"',
+													'msgid\"Hue\"',			'msgstr\"Kulör\"',
+													'msgid\"Sat.\"',			'msgstr\"Mättnad\"',
+													'msgid\"Bri.\"',			'msgstr\"Ljusstyrka\"',
+													'msgid\"Apply\"',			'msgstr\"Använd!\"',
+													'msgid\"Close\"',			'msgstr\"Stäng\"',
+													'msgid\"Category:\"',			'msgstr\"Kategori: \"',
+													'msgid\"add %n to %m.list\"',			'msgstr\"lägg till %n i %m.list\"',
+													'msgid\"delete %d.listDeleteItem of %m.list\"',			'msgstr\"ta bort %d.listDeleteItem från %m.list\"',
+													'msgid\"insert %n at %d.listItem of %m.list\"',			'msgstr\"sätt in %n på %d.listItem i %m.list\"',
+													'msgid\"replace item %d.listItem of %m.list with %n\"',			'msgstr\"ersätt %n i %d.listItem med %m.list\"',
+													'msgid\"item %d.listItem of %m.list\"',			'msgstr\"objekt %d.listItem i %m.list\"',
+													'msgid\"length of %m.list\"',			'msgstr\"längden av %m.list\"',
+													'msgid\"%m.list contains %n?\"',			'msgstr\"%m.list innehåller %n?\"',
+													'msgid\"xxxx\"',			'msgstr\"xxxxxx\"',
+													'msgid\"xxxx\"',			'msgstr\"xxxxxx\"',
+													'msgid\"xxxx\"',			'msgstr\"xxxxxx\"',
+
+
+												];
+			dictionary = makeDictionary(rader);
+			Scratch.app.translationChanged();
+		} else Scratch.app.server.getPOFile(lang, gotPOFile);
 
 	}
-	
+
 	public static function setLanguage(lang:String):void {
 		if ('import translation file' == lang) { importTranslationFromFile(); return; }
 		if ('set font size' == lang) { fontSizeMenu(); return; }

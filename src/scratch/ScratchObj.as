@@ -337,13 +337,13 @@ public class ScratchObj extends Sprite {
 		if ('showVariable:' == op) return [defaultVarName()];
 		if ('hideVariable:' == op) return [defaultVarName()];
 
-		if ('append:toList:' == op) return ['thing', defaultListName()];
+		if ('append:toList:' == op) return [0, defaultListName()];
 		if ('deleteLine:ofList:' == op) return [1, defaultListName()];
-		if ('insert:at:ofList:' == op) return ['thing', 1, defaultListName()];
-		if ('setLine:ofList:to:' == op) return [1, defaultListName(), 'thing'];
+		if ('insert:at:ofList:' == op) return [0, 1, defaultListName()];
+		if ('setLine:ofList:to:' == op) return [1, defaultListName(), 0];
 		if ('getLine:ofList:' == op) return [1, defaultListName()];
 		if ('lineCountOfList:' == op) return [defaultListName()];
-		if ('list:contains:' == op) return [defaultListName(), 'thing'];
+		if ('list:contains:' == op) return [defaultListName(), 0];
 		if ('showList:' == op) return [defaultListName()];
 		if ('hideList:' == op) return [defaultListName()];
 

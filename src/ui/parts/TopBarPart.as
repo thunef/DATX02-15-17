@@ -187,7 +187,7 @@ public class TopBarPart extends UIPart {
 
 	public function refresh():void {
 
-		helpTool.visible = true;
+		helpTool.visible = false;
 
 
 		if (Scratch.app.isExtensionDevMode) {
@@ -237,6 +237,10 @@ public class TopBarPart extends UIPart {
 		SimpleTooltips.add(growTool, {text: 'Grow', direction: 'bottom'});
 		SimpleTooltips.add(shrinkTool, {text: 'Shrink', direction: 'bottom'});
 		SimpleTooltips.add(helpTool, {text: 'Block help', direction: 'bottom'});
+
+		growTool.visible = false;
+		shrinkTool.visible = false;
+		helpTool.visible = false;
 	}
 
 	public function clearToolButtons():void {

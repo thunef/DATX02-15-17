@@ -220,7 +220,7 @@ public class PaletteBuilder {
 		var varSettings:VariableSettings = makeVarSettings(false, app.viewedObj().isStage);
 		d.addTitle('New Variable');
 		d.addField('Variable name', 150);
-		d.addWidget(varSettings);
+		//d.addWidget(varSettings);
 		d.addAcceptCancelButtons('OK');
 		d.showOnStage(app.stage);
 	}
@@ -237,7 +237,7 @@ public class PaletteBuilder {
 		var varSettings:VariableSettings = makeVarSettings(true, app.viewedObj().isStage);
 		d.addTitle('New List');
 		d.addField('List name', 150);
-		d.addWidget(varSettings);
+		//d.addWidget(varSettings);
 		d.addAcceptCancelButtons('OK');
 		d.showOnStage(app.stage);
 	}

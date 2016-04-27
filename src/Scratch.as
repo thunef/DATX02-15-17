@@ -1063,7 +1063,7 @@ public class Scratch extends Sprite {
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
-			m.addItem('Record Project Video', runtime.exportToVideo);
+			//m.addItem('Record Project Video', runtime.exportToVideo);
 		}
 		if (canUndoRevert()) {
 			m.addLine();
