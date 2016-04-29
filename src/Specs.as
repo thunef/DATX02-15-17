@@ -118,8 +118,8 @@ public class Specs {
 	public static var commands:Array = [
 		// block specification					type, cat, opcode			default args (optional)
 		// motion
-		["Forward %n steps [18/circuit]",						" ", 5, "forward:",					10],
-		["Backwards %n steps [18/circuit]",						" ", 5, "backwards:",					10],
+		["Forward %n cm",						" ", 5, "forward:",					10],
+		["Backwards %n cm",						" ", 5, "backwards:",					10],
 		["Increase speed by %n ",						" ", 5, "accelerate:",					1],
 		["Decrease speed by %n ",						" ", 5, "retardate:",					1],
 		["Max speed",						" ", 5, "maxspeed:",					1],

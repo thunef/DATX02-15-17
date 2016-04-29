@@ -29,7 +29,7 @@ DiffSince2000 = datetime.date.today() - datetime.date(2000, 01, 01)
 # hours, minutes, seconds
 timer_started = [0,0,0]
 
-ROTATIONTIME = 14 # For waiting on wheels to rotate
+ROTATIONTIME = 0.1 # For waiting on wheels to rotate 14
 
 os.system("sudo mount -a")
 
@@ -64,12 +64,12 @@ def reset_timer():
 def getLists(json_lists):
     for k in range(len(json_lists)):
         name = json_lists[k]['listName']
-        lists[name] = json_lists[k]['contents']
+        lists[name] = []#json_lists[k]['contents']
 
 def getVariables(json_variables):
     for k in range(len(json_variables)):
         name = json_variables[k]['name']
-        variables[name] = json_variables[k]['value']
+        variables[name] = 0#json_variables[k]['value']
 
 
 def computeFunction(func, value):
@@ -194,9 +194,19 @@ def isTrue(statement):
 def setSpeed(s):
     #print "setting speed ", current_speed
     global current_speed
+    if(s > 255):
+        s=255
+    if(s < 50):
+        s = 50
     current_speed = s
     set_speed(current_speed)
+    set_left_speed(current_speed)
+    set_right_speed(int(current_speed * 1.06))
     print "setting speed ", current_speed
+
+def sleep(rot):
+    print "lala",current_speed
+    time.sleep(rot/(ROTATIONTIME*current_speed))
 
 def executeBlock(block):
         #print "speed: ", current_speed
@@ -205,32 +215,32 @@ def executeBlock(block):
         # Motion
         if block[0] == "forward:":
             print "framAt" , block[1]
-            rot=getValue(block[1])
+            rot=int(getValue(block[1]) * 0.9)
             enc_tgt(1,1,rot)    ## m1: 0 to disable targeting for motor 1, 1 to enable it
                                 ## m2: 0 to disable targeting for motor 2, 1 to enable it
                                 ## target: number of encoder pulses to target (18 per rotation). For moving the wheel by 2 rotations, target should be 36
 
             fwd()
-            time.sleep(rot/ROTATIONTIME)
+            sleep(rot)
         elif block[0] == "backwards:":
             print "bakka" , block[1]
-            rot=getValue(block[1])
+            rot=int(getValue(block[1]) * 0.9)
             enc_tgt(1,1,rot)
             bwd()
-            time.sleep(rot/ROTATIONTIME)
+            sleep(rot)
         elif block[0] == "turnRight:":
             print "rotate right " , block[1], " degrees"
             rot = int(getValue(block[1])/5.5)
             enc_tgt(0,1,rot)
             left()
-            time.sleep(rot/ROTATIONTIME)
+            sleep(rot)
         elif block[0] == "turnLeft:":
             enable_encoders()
             print "rotate left ", block[1], " degrees"
             rot = int(getValue(block[1])/5.5)
             enc_tgt(1,0,rot)
             right()
-            time.sleep(rot/ROTATIONTIME)
+            sleep(rot)
         elif block[0] == 'maxspeed:':
             print 'maxspeed'
             setSpeed(255) # 255 is the maximum speed of the gopigo
