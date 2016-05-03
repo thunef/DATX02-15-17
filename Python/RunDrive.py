@@ -50,6 +50,7 @@ scripts = data['scripts']
 
 lists     = {}
 variables = {}
+globalcall = {}
 
 current_speed = 120
 
@@ -62,14 +63,17 @@ def reset_timer():
 # put the userdefined lists with the content of that
 # list in a container, each list keeps its name
 def getLists(json_lists):
+    global lists
     for k in range(len(json_lists)):
         name = json_lists[k]['listName']
         lists[name] = []#json_lists[k]['contents']
 
 def getVariables(json_variables):
+    global variables
     for k in range(len(json_variables)):
         name = json_variables[k]['name']
         variables[name] = 0#json_variables[k]['value']
+
 
 
 def computeFunction(func, value):
@@ -165,10 +169,15 @@ def getValue(block):
                 now[4] - timer_started[1],
                 now[5] - timer_started[2])
 
+    if block[0] == 'getParam':
+        return getValue(globalcall[block[1]])
+
     return 0
 
 
 def isTrue(statement):
+    if statement == False:
+        return False
     if statement == "False":
         return False
     elif statement == "True":
@@ -181,6 +190,11 @@ def isTrue(statement):
     elif statement[0] == '|':
         return isTrue(statement[1]) or isTrue(statement[2])
 
+    if statement[0] == "getParam" and statement[2] == "b":
+        print "Vad kan detta vara" , globalcall[statement[1]] , "  ( ", statement[1], " )"
+        return isTrue(globalcall[statement[1]])
+
+
     a = getValue(statement[1])
     b = getValue(statement[2])
 
@@ -190,6 +204,8 @@ def isTrue(statement):
         return a < b
     elif statement[0] == '>':
         return a > b
+
+
 
 def setSpeed(s):
     #print "setting speed ", current_speed
@@ -207,6 +223,7 @@ def setSpeed(s):
 def sleep(rot):
     print "lala",current_speed
     time.sleep(rot/(ROTATIONTIME*current_speed))
+
 
 def executeBlock(block):
         #print "speed: ", current_speed
@@ -322,7 +339,20 @@ def executeBlock(block):
         # Timers
         elif block[0] == 'timerReset':
             reset_timer()
+        elif block[0] == 'call':
+            callCustomBlock(block)
         else: print "TODO:", block[0]
+
+def callCustomBlock(call):
+    for index in range(len(scripts)):
+        #First 2 rows is gui posision, but script starts at [2]
+        if scripts[index][2][0][0] == "procDef" and scripts[index][2][0][1] == call[1]: #First(0) row is the event
+            att = scripts[index][2][0][2]
+            global globalcall
+            for i in range(len(att)):
+                globalcall[att[i]] = call[2+i] #Add the custom attributes to a list
+            executeChunkOfBlocks(scripts[index][2])
+
 
 def executeChunkOfBlocks(chunk):
     setSpeed(current_speed)
