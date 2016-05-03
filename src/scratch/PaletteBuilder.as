@@ -54,7 +54,7 @@ public class PaletteBuilder {
 
 	public static function strings():Array {
 		return [
-			'Stage selected:', 'No motion blocks',
+			'Make a sprite:', 'Bottom left corner',
 			'Make a Block', 'Make a List', 'Make a Variable',
 			'New List', 'List name', 'New Variable', 'Variable name',
 			'New Block', 'Add an Extension', 'when Stage clicked'];
@@ -65,22 +65,23 @@ public class PaletteBuilder {
 		app.palette.clear(scrollToOrigin);
 		nextY = 7;
 
-		if (selectedCategory == Specs.dataCategory) return showDataCategory();
-		if (selectedCategory == Specs.myBlocksCategory) return showMyBlocksPalette(shiftKey);
 
 		var catName:String = Specs.categories[selectedCategory][1];
 		var catColor:int = Specs.blockColor(selectedCategory);
 		if (app.viewedObj() && app.viewedObj().isStage) {
 			// The stage has different blocks for some categories:
-			var stageSpecific:Array = ['Control', 'Looks', 'Motion', 'Pen', 'Sensing'];
-			if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
-			if (catName == 'Motion') {
-				addItem(makeLabel(Translator.map('Stage selected:')));
+			var stageSpecific:Array = ['Control', 'Motion', 'Sensing'];
+			//if (stageSpecific.indexOf(catName) != -1) selectedCategory += 100;
+			/*if (catName == 'Motion') {
+				addItem(makeLabel(Translator.map('Make a sprite:')));
 				nextY -= 6;
-				addItem(makeLabel(Translator.map('No motion blocks')));
+				addItem(makeLabel(Translator.map('Bottom left corner')));
 				return;
-			}
+			}*/
 		}
+		if (selectedCategory == Specs.dataCategory) return showDataCategory();
+		if (selectedCategory == Specs.myBlocksCategory) return showMyBlocksPalette(shiftKey);
+
 		addBlocksForCategory(selectedCategory, catColor);
 		updateCheckboxes();
 	}
@@ -158,7 +159,7 @@ public class PaletteBuilder {
 	}
 
 	protected function addAddExtensionButton():void {
-		addItem(new Button(Translator.map('Add an Extension'), showAnExtension, false, '/help/studio/tips/blocks/add-an-extension/'));
+		//addItem(new Button(Translator.map('Add an Extension'), showAnExtension, false, '/help/studio/tips/blocks/add-an-extension/'));
 	}
 
 	private function showDataCategory():void {
@@ -219,7 +220,7 @@ public class PaletteBuilder {
 		var varSettings:VariableSettings = makeVarSettings(false, app.viewedObj().isStage);
 		d.addTitle('New Variable');
 		d.addField('Variable name', 150);
-		d.addWidget(varSettings);
+		//d.addWidget(varSettings);
 		d.addAcceptCancelButtons('OK');
 		d.showOnStage(app.stage);
 	}
@@ -236,7 +237,7 @@ public class PaletteBuilder {
 		var varSettings:VariableSettings = makeVarSettings(true, app.viewedObj().isStage);
 		d.addTitle('New List');
 		d.addField('List name', 150);
-		d.addWidget(varSettings);
+		//d.addWidget(varSettings);
 		d.addAcceptCancelButtons('OK');
 		d.showOnStage(app.stage);
 	}

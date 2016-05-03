@@ -39,6 +39,14 @@ public class LooksPrims {
 	}
 
 	public function addPrimsTo(primTable:Dictionary):void {
+		primTable['led:r:on']				= primRLedOn;
+		primTable['led:r:off']				= primRLedOff;
+		primTable['led:l:on']				= primLLedOn;
+		primTable['led:l:off']				= primLLedOff;
+		primTable['servo:off']				= primServoOff;
+		primTable['servo:on']				= primServoOff;
+		primTable['servo:pos']				= primSetServo;
+
 		primTable['lookLike:']				= primShowCostume;
 		primTable['nextCostume']			= primNextCostume;
 		primTable['costumeIndex']			= primCostumeIndex;
@@ -82,6 +90,21 @@ public class LooksPrims {
 //		primTable['yScroll']				= function(b:*):* { return app.stagePane.yScroll };
 
 		primTable['setRotationStyle']		= primSetRotationStyle;
+	}
+
+	private function primRLedOn(b:Block):void {
+	}
+	private function primRLedOff(b:Block):void {
+	}
+	private function primLLedOn(b:Block):void {
+	}
+	private function primLLedOff(b:Block):void {
+	}
+	private function primServoOn(b:Block):void {
+	}
+	private function primServoOff(b:Block):void {
+	}
+	private function primSetServo(b:Block):void {
 	}
 
 	private function primNextCostume(b:Block):void {

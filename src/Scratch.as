@@ -92,7 +92,7 @@ public class Scratch extends Sprite {
 	public var isMicroworld:Boolean = false;
 
 	public var presentationScale:Number;
-	
+
 	// Runtime
 	public var runtime:ScratchRuntime;
 	public var interp:Interpreter;
@@ -162,7 +162,7 @@ public class Scratch extends Sprite {
 	}
 
 	protected function initialize():void {
-		isOffline = !URLUtil.isHttpURL(loaderInfo.url);
+		isOffline = true;//!URLUtil.isHttpURL(loaderInfo.url);
 		hostProtocol = URLUtil.getProtocol(loaderInfo.url);
 
 		isExtensionDevMode = (loaderInfo.parameters['extensionDevMode'] == 'true');
@@ -806,6 +806,7 @@ public class Scratch extends Sprite {
 		stagePart = getStagePart();
 		libraryPart = getLibraryPart();
 		tabsPart = new TabsPart(this);
+		tabsPart.visible = false;
 		initScriptsPart();
 		initImagesPart();
 		soundsPart = new SoundsPart(this);
@@ -882,15 +883,15 @@ public class Scratch extends Sprite {
 
 		updateLayout(w, h);
 	}
-	
+
 	public function updateRecordingTools(t:Number):void {
 		stagePart.updateRecordingTools(t);
 	}
-	
+
 	public function removeRecordingTools():void {
 		stagePart.removeRecordingTools();
 	}
-	
+
 	public function refreshStagePart():void {
 		stagePart.refresh();
 	}
@@ -912,8 +913,9 @@ public class Scratch extends Sprite {
 			} else {
 				stagePart.setWidthHeight(480 + extraW, 360 + extraH, 1);
 			}
-			stagePart.x = 5;
+			stagePart.x = -482;
 			stagePart.y = isMicroworld ? 5 : topBarPart.bottom() + 5;
+
 			fixLoadProgressLayout();
 		} else {
 			drawBG();
@@ -944,7 +946,7 @@ public class Scratch extends Sprite {
 			tabsPart.visible = false;
 
 		// the content area shows the part associated with the currently selected tab:
-		var contentY:int = tabsPart.y + 27;
+		var contentY:int = tabsPart.y + 2;//27
 		if (!isMicroworld)
 			w -= tipsWidth();
 		updateContentArea(tabsPart.x, contentY, w - tabsPart.x - 6, h - contentY - 5, h);
@@ -1050,7 +1052,7 @@ public class Scratch extends Sprite {
 
 		m.showOnStage(stage, b.x, topBarPart.bottom() - 1);
 	}
-	
+
 	public function stopVideo(b:*):void {
 		runtime.stopVideo();
 	}
@@ -1061,7 +1063,7 @@ public class Scratch extends Sprite {
 		if (runtime.recording || runtime.ready==ReadyLabel.COUNTDOWN || runtime.ready==ReadyLabel.READY) {
 			m.addItem('Stop Video', runtime.stopVideo);
 		} else {
-			m.addItem('Record Project Video', runtime.exportToVideo);
+			//m.addItem('Record Project Video', runtime.exportToVideo);
 		}
 		if (canUndoRevert()) {
 			m.addLine();
@@ -1098,8 +1100,8 @@ public class Scratch extends Sprite {
 		var m:Menu = new Menu(null, 'More', CSS.topBarColor(), 28);
 		m.addItem('Undelete', runtime.undelete, runtime.canUndelete());
 		m.addLine();
-		m.addItem('Small stage layout', toggleSmallStage, true, stageIsContracted);
-		m.addItem('Turbo mode', toggleTurboMode, true, interp.turboMode);
+		//m.addItem('Small stage layout', toggleSmallStage, true, stageIsContracted);
+		//m.addItem('Turbo mode', toggleTurboMode, true, interp.turboMode);
 		addEditMenuItems(b, m);
 		var p:Point = b.localToGlobal(new Point(0, 0));
 		m.showOnStage(stage, b.x, topBarPart.bottom() - 1);
@@ -1229,7 +1231,8 @@ public class Scratch extends Sprite {
 	}
 
 	public function toggleSmallStage():void {
-		setSmallStageMode(!stageIsContracted);
+		//setSmallStageMode(!stageIsContracted); //REMOVED SMALL STAGE
+		setSmallStageMode(false); //REMOVED SMALL STAGE
 	}
 
 	public function toggleTurboMode():void {

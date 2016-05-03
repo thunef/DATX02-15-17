@@ -177,13 +177,11 @@ public class ProcedureSpecEditor extends Sprite {
 	private function addButtonsAndLabels():void {
 		buttonLabels = [
 			makeLabel('Add number input:', 14),
-			makeLabel('Add string input:', 14),
 			makeLabel('Add boolean input:', 14),
 			makeLabel('Add label text:', 14)
 		];
 		buttons = [
 			new Button('', function():void { appendObj(makeNumberArg()) }),
-			new Button('', function():void { appendObj(makeStringArg()) }),
 			new Button('', function():void { appendObj(makeBooleanArg()) }),
 			new Button(Translator.map('text'), function():void { appendObj(makeTextField('')) })
 		];
@@ -200,7 +198,7 @@ public class ProcedureSpecEditor extends Sprite {
 
 		var icon:BlockShape = new BlockShape(BlockShape.BooleanShape, lightGray);
 		icon.setWidthAndTopHeight(25, 14, true);
-		buttons[2].setIcon(icon);
+		buttons[1].setIcon(icon);
 
 		for each (var label:TextField in buttonLabels) addChild(label);
 		for each (var b:Button in buttons) addChild(b);
@@ -210,6 +208,8 @@ public class ProcedureSpecEditor extends Sprite {
 		addChild(warpCheckbox = new IconButton(null, 'checkbox'));
 		warpCheckbox.disableMouseover();
 		addChild(warpLabel = makeLabel('Run without screen refresh', 14));
+		warpCheckbox.visible = false;
+		warpLabel.visible = false;
 	}
 
 	private function makeLabel(s:String, fontSize:int):TextField {

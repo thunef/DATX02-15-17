@@ -60,11 +60,12 @@ public class Specs {
 	public static const categories:Array = [
 	 // id   category name	color
 		[0,  "undefined",	0xD42828],
-		[1,  "Motion",		0x4a6cd4],
-		[2,  "Looks",		0x8a55d7],
-		[3,  "Sound",		0xbb42c3],
-		[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
-		[5,  "Events",		0xc88330],
+		[1,  "Buttons",		0xff69b4],//#  c88330
+		[5,  "Motion",		0x4a6cd4],
+		[2,  "Actions",		0x8a55d7],
+		//[3,  "Sound",		0xbb42c3],
+		//[4,  "Pen",			0x0e9a6c], // Scratch 1.4: 0x009870
+
 		[6,  "Control",		0xe1a91a],
 		[7,  "Sensing",		0x2ca5e2],
 		[8,  "Operators",	0x5cb712],
@@ -105,6 +106,11 @@ public class Specs {
 		if (name == "stop") icon = Resources.createBmp('stopIcon');
 		if (name == "turnLeft") icon = Resources.createBmp('turnLeftIcon');
 		if (name == "turnRight") icon = Resources.createBmp('turnRightIcon');
+		if (name == "spider") icon = Resources.createBmp('spiderIcon');
+		if (name == "greenBall") icon = Resources.createBmp('greenIcon');
+		if (name == "blueBall") icon = Resources.createBmp('blueIcon');
+		if (name == "redBall") icon = Resources.createBmp('redIcon');
+		if (name == "yellowBall") icon = Resources.createBmp('yellowIcon');
 		if (icon != null) icon.scaleX = icon.scaleY = 0.5;
 		return icon;
 	}
@@ -112,32 +118,45 @@ public class Specs {
 	public static var commands:Array = [
 		// block specification					type, cat, opcode			default args (optional)
 		// motion
-		["move %n steps",						" ", 1, "forward:",					10],
-		["turn @turnRight %n degrees",			" ", 1, "turnRight:",				15],
-		["turn @turnLeft %n degrees",			" ", 1, "turnLeft:",				15],
+		["Forward %n cm",						" ", 5, "forward:",					10],
+		["Backwards %n cm",						" ", 5, "backwards:",					10],
+		["Increase speed by %n ",						" ", 5, "accelerate:",					1],
+		["Decrease speed by %n ",						" ", 5, "retardate:",					1],
+		["Max speed",						" ", 5, "maxspeed:",					1],
+		["Min speed",						" ", 5, "minspeed:",					1],
+		["turn @turnRight %n degrees",			" ", 5, "turnRight:",				90],
+		["turn @turnLeft %n degrees",			" ", 5, "turnLeft:",				90],
 		["--"],
-		["point in direction %d.direction",		" ", 1, "heading:",					90],
-		["point towards %m.spriteOrMouse",		" ", 1, "pointTowards:",			""],
+		//["point in direction %d.direction",		" ", 1, "heading:",					90],
+		//["point towards %m.spriteOrMouse",		" ", 1, "pointTowards:",			""],
 		["--"],
-		["go to x:%n y:%n",						" ", 1, "gotoX:y:"],
-		["go to %m.spriteOrMouse",				" ", 1, "gotoSpriteOrMouse:",		"mouse-pointer"],
-		["glide %n secs to x:%n y:%n",			" ", 1, "glideSecs:toX:y:elapsed:from:"],
+		//["go to x:%n y:%n",						" ", 1, "gotoX:y:"],
+		//["go to %m.spriteOrMouse",				" ", 1, "gotoSpriteOrMouse:",		"mouse-pointer"],
+		//["glide %n secs to x:%n y:%n",			" ", 1, "glideSecs:toX:y:elapsed:from:"],
 		["--"],
-		["change x by %n",						" ", 1, "changeXposBy:",			10],
-		["set x to %n",							" ", 1, "xpos:",					0],
-		["change y by %n",						" ", 1, "changeYposBy:",			10],
-		["set y to %n",							" ", 1, "ypos:",					0],
+		//["change x by %n",						" ", 1, "changeXposBy:",			10],
+		//["set x to %n",							" ", 1, "xpos:",					0],
+		//["change y by %n",						" ", 1, "changeYposBy:",			10],
+		//["set y to %n",							" ", 1, "ypos:",					0],
 		["--"],
-		["if on edge, bounce",					" ", 1, "bounceOffEdge"],
+		//["if on edge, bounce",					" ", 1, "bounceOffEdge"],
 		["-"],
-		["set rotation style %m.rotationStyle",	" ", 1, "setRotationStyle", 		"left-right"],
+		//["set rotation style %m.rotationStyle",	" ", 1, "setRotationStyle", 		"left-right"],
 		["--"],
-		["x position",							"r", 1, "xpos"],
-		["y position",							"r", 1, "ypos"],
-		["direction",							"r", 1, "heading"],
+		//["x position",							"r", 1, "xpos"],
+		//["y position",							"r", 1, "ypos"],
+		//["direction",							"r", 1, "heading"],
 
+		//Actions
+		["Turn on right LED",								" ", 2, "led:r:on"],
+		["Turn off right LED",								" ", 2, "led:r:off"],
+		["Turn on left LED",								" ", 2, "led:l:on"],
+		["Turn off left LED",								" ", 2, "led:l:off"],
+		//["Turn on servo",								" ", 2, "servo:on"],
+		//["Turn off servo",								" ", 2, "servo:off"],
+		//["Set servo to position %n",								" ", 2, "servo:pos"],
 		// looks
-		["say %s for %n secs",					" ", 2, "say:duration:elapsed:from:",	"Hello!", 2],
+		/*["say %s for %n secs",					" ", 2, "say:duration:elapsed:from:",	"Hello!", 2],
 		["say %s",								" ", 2, "say:",							"Hello!"],
 		["think %s for %n secs",				" ", 2, "think:duration:elapsed:from:", "Hmm...", 2],
 		["think %s",							" ", 2, "think:",						"Hmm..."],
@@ -162,7 +181,7 @@ public class Specs {
 		["costume #",							"r", 2, "costumeIndex"],
 		["backdrop name",						"r", 2, "sceneName"],
 		["size",								"r", 2, "scale"],
-
+		*/
 		// stage looks
 		["switch backdrop to %m.backdrop",			" ", 102, "startScene", 			"backdrop1"],
 		["switch backdrop to %m.backdrop and wait", " ", 102, "startSceneAndWait",		"backdrop1"],
@@ -196,7 +215,7 @@ public class Specs {
 		["tempo",								"r", 3,  "tempo"],
 
 		// pen
-		["clear",								" ", 4, "clearPenTrails"],
+	/*	["clear",								" ", 4, "clearPenTrails"],
 		["-"],
 		["stamp",								" ", 4, "stampCostume"],
 		["-"],
@@ -213,21 +232,25 @@ public class Specs {
 		["change pen size by %n",				" ", 4, "changePenSizeBy:",		1],
 		["set pen size to %n",					" ", 4, "penSize:", 			1],
 		["-"],
-
+*/
 		// stage pen
-		["clear",								" ", 104, "clearPenTrails"],
+		//["clear",								" ", 104, "clearPenTrails"],
 
 		// triggers
-		["when @greenFlag clicked",				"h", 5, "whenGreenFlag"],
-		["when %m.key key pressed",				"h", 5, "whenKeyPressed", 		"space"],
-		["when this sprite clicked",			"h", 5, "whenClicked"],
-		["when backdrop switches to %m.backdrop", "h", 5, "whenSceneStarts", 	"backdrop1"],
+		//["when @greenFlag clicked",				"h", 1, "whenGreenFlag"],
+		["When @greenBall clicked",				"h", 1, "whenGreen"],
+		["When @blueBall clicked",				"h", 1, "whenBlue"],
+		//["when @redBall clicked",				"h", 1, "whenRed"],
+		["When @yellowBall clicked",				"h", 1, "whenYellow"],
+		//["when %m.key key pressed",				"h", 1, "whenKeyPressed", 		"space"],
+		//["when this sprite clicked",			"h", 1, "whenClicked"],
+		//["when backdrop switches to %m.backdrop", "h", 1, "whenSceneStarts", 	"backdrop1"],
 		["--"],
-		["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],
+		//["when %m.triggerSensor > %n",			"h", 5, "whenSensorGreaterThan", "loudness", 10],  TODO
 		["--"],
-		["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
-		["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
-		["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
+		//["when I receive %m.broadcast",			"h", 5, "whenIReceive",			""],
+		//["broadcast %m.broadcast",				" ", 5, "broadcast:",			""],
+		//["broadcast %m.broadcast and wait",		" ", 5, "doBroadcastAndWait",	""],
 
 		// control - sprite
 		["wait %n secs",						" ", 6, "wait:elapsed:from:",	1],
@@ -240,11 +263,11 @@ public class Specs {
 		["wait until %b",						" ", 6, "doWaitUntil"],
 		["repeat until %b",						"c", 6, "doUntil"],
 		["-"],
-		["stop %m.stop",						"f", 6, "stopScripts", "all"],
+		//["stop %m.stop",						"f", 6, "stopScripts", "all"],
 		["-"],
-		["when I start as a clone",				"h", 6, "whenCloned"],
-		["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
-		["delete this clone",					"f", 6, "deleteClone"],
+		//["when I start as a clone",				"h", 6, "whenCloned"],
+		//["create clone of %m.spriteOnly",		" ", 6, "createCloneOf"],
+		//["delete this clone",					"f", 6, "deleteClone"],
 		["-"],
 
 		// control - stage
@@ -263,33 +286,33 @@ public class Specs {
 		["create clone of %m.spriteOnly",		" ", 106, "createCloneOf"],
 
 		// sensing
-		["touching %m.touching?",				"b", 7, "touching:",			""],
-		["touching color %c?",					"b", 7, "touchingColor:"],
-		["color %c is touching %c?",			"b", 7, "color:sees:"],
-		["distance to %m.spriteOrMouse",		"r", 7, "distanceTo:",			""],
+		//["touching %m.touching?",				"b", 7, "touching:",			""],
+		//["touching color %c?",					"b", 7, "touchingColor:"],
+		//["color %c is touching %c?",			"b", 7, "color:sees:"],
+		["distance to object ",		"r", 7, "distanceTo:",			""],
 		["-"],
-		["ask %s and wait",						" ", 7, "doAsk", 				"What's your name?"],
-		["answer",								"r", 7, "answer"],
+		//["ask %s and wait",						" ", 7, "doAsk", 				"What's your name?"],
+		//["answer",								"r", 7, "answer"],
 		["-"],
-		["key %m.key pressed?",					"b", 7, "keyPressed:",			"space"],
-		["mouse down?",							"b", 7, "mousePressed"],
-		["mouse x",								"r", 7, "mouseX"],
-		["mouse y",								"r", 7, "mouseY"],
+		//["key %m.key pressed?",					"b", 7, "keyPressed:",			"space"],
+		//["mouse down?",							"b", 7, "mousePressed"],
+		//["mouse x",								"r", 7, "mouseX"],
+		//["mouse y",								"r", 7, "mouseY"],
 		["-"],
-		["loudness",							"r", 7, "soundLevel"],
+		//["loudness",							"r", 7, "soundLevel"],
 		["-"],
-		["video %m.videoMotionType on %m.stageOrThis", "r", 7, "senseVideoMotion", "motion"],
-		["turn video %m.videoState",			" ", 7, "setVideoState",			"on"],
-		["set video transparency to %n%",		" ", 7, "setVideoTransparency",		50],
+	//	["video %m.videoMotionType on %m.stageOrThis", "r", 7, "senseVideoMotion", "motion"],
+	//	["turn video %m.videoState",			" ", 7, "setVideoState",			"on"],
+		//["set video transparency to %n%",		" ", 7, "setVideoTransparency",		50],
 		["-"],
 		["timer",								"r", 7, "timer"],
 		["reset timer",							" ", 7, "timerReset"],
 		["-"],
-		["%m.attribute of %m.spriteOrStage",	"r", 7, "getAttribute:of:"],
+		//["%m.attribute of %m.spriteOrStage",	"r", 7, "getAttribute:of:"],
 		["-"],
 		["current %m.timeAndDate", 				"r", 7, "timeAndDate",			"minute"],
 		["days since 2000", 					"r", 7, "timestamp"],
-		["username",							"r", 7, "getUserName"],
+		//["username",							"r", 7, "getUserName"],
 
 		// stage sensing
 		["ask %s and wait",						" ", 107, "doAsk", 				"What's your name?"],
@@ -323,17 +346,17 @@ public class Specs {
 		["-"],
 		["pick random %n to %n",		"r", 8, "randomFrom:to:",		1, 10],
 		["-"],
-		["%s < %s",								"b", 8, "<",					"", ""],
-		["%s = %s",								"b", 8, "=",					"", ""],
-		["%s > %s",								"b", 8, ">",					"", ""],
+		["%n < %n",								"b", 8, "<",					"", ""],
+		["%n = %n",								"b", 8, "=",					"", ""],
+		["%n > %n",								"b", 8, ">",					"", ""],
 		["-"],
 		["%b and %b",							"b", 8, "&"],
 		["%b or %b",							"b", 8, "|"],
 		["not %b",								"b", 8, "not"],
 		["-"],
-		["join %s %s",							"r", 8, "concatenate:with:",	"hello ", "world"],
-		["letter %n of %s",						"r", 8, "letter:of:",			1, "world"],
-		["length of %s",						"r", 8, "stringLength:",		"world"],
+		//["join %s %s",							"r", 8, "concatenate:with:",	"hello ", "world"],
+		//["letter %n of %s",						"r", 8, "letter:of:",			1, "world"],
+		//["length of %s",						"r", 8, "stringLength:",		"world"],
 		["-"],
 		["%n mod %n",							"r", 8, "%",					"", ""],
 		["round %n",							"r", 8, "rounded", 				""],
@@ -341,24 +364,24 @@ public class Specs {
 		["%m.mathOp of %n",						"r", 8, "computeFunction:of:",	"sqrt", 9],
 
 		// variables
-		["set %m.var to %s",								" ", 9, SET_VAR],
+		["set %m.var to %n",								" ", 9, SET_VAR],
 		["change %m.var by %n",								" ", 9, CHANGE_VAR],
-		["show variable %m.var",							" ", 9, "showVariable:"],
-		["hide variable %m.var",							" ", 9, "hideVariable:"],
+		//["show variable %m.var",							" ", 9, "showVariable:"],
+		//["hide variable %m.var",							" ", 9, "hideVariable:"],
 
 		// lists
-		["add %s to %m.list",								" ", 12, "append:toList:"],
+		["add %n to %m.list",								" ", 12, "append:toList:"],
 		["-"],
 		["delete %d.listDeleteItem of %m.list",				" ", 12, "deleteLine:ofList:"],
-		["insert %s at %d.listItem of %m.list",				" ", 12, "insert:at:ofList:"],
-		["replace item %d.listItem of %m.list with %s",		" ", 12, "setLine:ofList:to:"],
+		["insert %n at %d.listItem of %m.list",				" ", 12, "insert:at:ofList:"],
+		["replace item %d.listItem of %m.list with %n",		" ", 12, "setLine:ofList:to:"],
 		["-"],
 		["item %d.listItem of %m.list",						"r", 12, "getLine:ofList:"],
 		["length of %m.list",								"r", 12, "lineCountOfList:"],
-		["%m.list contains %s?",								"b", 12, "list:contains:"],
+		["%m.list contains %n?",								"b", 12, "list:contains:"],
 		["-"],
-		["show list %m.list",								" ", 12, "showList:"],
-		["hide list %m.list",								" ", 12, "hideList:"],
+		//["show list %m.list",								" ", 12, "showList:"],
+		//["hide list %m.list",								" ", 12, "hideList:"],
 
 		// obsolete blocks from Scratch 1.4 that may be used in older projects
 		["play drum %n for %n beats",			" ", 98, "drum:duration:elapsed:from:", 1, 0.25], // Scratch 1.4 MIDI drum

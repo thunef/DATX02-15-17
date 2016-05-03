@@ -151,7 +151,7 @@ public class TopBarPart extends UIPart {
 
 		// cursor tool buttons
 		var space:int = 3;
-		copyTool.x = app.isOffline ? 493 : 427;
+		copyTool.x =  493;
 		cutTool.x = copyTool.right() + space;
 		growTool.x = cutTool.right() + space;
 		shrinkTool.x = growTool.right() + space;
@@ -186,9 +186,9 @@ public class TopBarPart extends UIPart {
 	}
 
 	public function refresh():void {
-		if (app.isOffline) {
-			helpTool.visible = app.isOffline;
-		}
+
+		helpTool.visible = false;
+
 
 		if (Scratch.app.isExtensionDevMode) {
 			var hasExperimental:Boolean = app.extensionManager.hasExperimentalExtensions();
@@ -237,6 +237,10 @@ public class TopBarPart extends UIPart {
 		SimpleTooltips.add(growTool, {text: 'Grow', direction: 'bottom'});
 		SimpleTooltips.add(shrinkTool, {text: 'Shrink', direction: 'bottom'});
 		SimpleTooltips.add(helpTool, {text: 'Block help', direction: 'bottom'});
+
+		growTool.visible = false;
+		shrinkTool.visible = false;
+		helpTool.visible = false;
 	}
 
 	public function clearToolButtons():void {

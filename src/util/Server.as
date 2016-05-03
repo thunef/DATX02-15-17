@@ -95,17 +95,8 @@ public class Server implements IServer {
 	public function getOfficialExtensionURL(extensionName:String):String {
 		var path:String;
 
-		if (Scratch.app.isOffline) {
-			path = 'static/js/scratch_extensions/';
-		}
-		else if (Scratch.app.isExtensionDevMode) {
-			path = 'scratch_extensions/';
-		}
-		else {
-			// Skip the CDN when debugging to make iteration easier
-			var extensionSite:String = Capabilities.isDebugger ? URLs.sitePrefix : URLs.siteCdnPrefix;
-			path = extensionSite + URLs.staticFiles + 'js/scratch_extensions/';
-		}
+		path = 'static/js/scratch_extensions/';
+
 
 		path += extensionName;
 
