@@ -124,7 +124,7 @@ public class Translator {
 													'msgid\"round %n\"',			'msgstr\"avrunda %n\"',
 													'msgid\"%m.mathOp of %n\"',			'msgstr\"%m.mathOp av %n\"',
 													'msgid\"set %m.var to %n\"',			'msgstr\"sätt %m.var till %s\"',
-													'msgid\"change %m.var by %n\"',			'msgstr\"ändra %m.var till %n\"',
+													'msgid\"change %m.var by %n\"',			'msgstr\"ändra %m.var med %n\"',
 													'msgid\"days since 2000\"',			'msgstr\"dagar sedan milleniumskiftet\"',
 													'msgid\"Make a Block\"',			'msgstr\"Skapa ett block\"',
 													'msgid\"Make a Variable\"',			'msgstr\"Skapa en variabel\"',
