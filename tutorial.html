@@ -45,7 +45,12 @@ a:hover {
 
 <h2 id="sens">Getting Started</h2>
 <p><a href="#prog">Creating a program</a></p>
+<p><a href="#loops">Loops</a></p>
+<p><a href="#var">Variables</a></p>
+<p><a href="#con">Conditionals</a></p>
+<p><a href="#lists">Lists</a></p>
 <p><a href="#prog1">Uploading a program</a></p>
+
 <h3 id="prog">Creating a program</h3>
 <p> The different tabs represent different types of blocks which can be seen when you click on the tabs.</p> 
 <img src="tutorials/tabs.PNG" alt="tabs" style="width:304px;height:100px;">
@@ -59,12 +64,72 @@ button with the same colour.
 There are three buttons to chose from; green, blue and yellow.</p>
 <img src="tutorials/buttons.PNG" alt="buttons" style="width:150px;height:150px;">
 <p>You may have seen that there is also a red button on the PedaGogo, this button will be explained later on.<br>
-You can tell by the shapes of the blocks how they fit together.</p>
+You can tell by the shapes of the blocks how they fit together. By dragging the blocks inside or underneath other
+blocks, they will snap into place automatically.</p>
 <img src="tutorials/fit.PNG" alt="fit" style="width:304px;height:130px;">
-<h4 id="loops">Loops</h4>
-<p>Kort introduktion till loopar!!</p>
+<p><a href="#menu">Back to Menu</a></p>
+
+<h3 id="loops">Loops</h3>
+<img src="tutorials/loops.PNG" alt="loops" style="width:304px;height:100px;">
+<p>The orange blocks that you see above are called loops. You can use these to repeat parts of, or all of, your 
+program. If you want to, for example, spin round four times, you can put the repeat block around the turn 
+block and change the repeat-value to 4.</p>
+<img src="tutorials/loops2.PNG" alt="loops2" style="width:230px;height:80px;">
 <p>To change the values in the blocks, double click on them and type in a new value!</p>
 <img src="tutorials/siffror.PNG" alt="siff" style="width:210px;height:80px;">
+<p id="dmnds">The <i>forever block</i> will repeat (loop) the blocks placed inside forever, or until you end the program.
+The <i>repeat until block</i> has an empty space shaped like a diamond. You can find the blocks that fit in here under the
+tab called Operators. </p>
+<img src="tutorials/diamonds.PNG" alt="dmnds" style="width:150px;height:100px;">
+<p>To use these, you need to know more about <a href="#var">variables.</a></p>
+<p><a href="#menu">Back to Menu</a></p>
+
+<h3 id="var">Variables</h3>
+<p>Variables are used to store information, for example they can be used as counters. This can be used in loops: 
+instead of changing the value in a <i>repeat block</i>, you could use a <i>repeat until block</i> like in the picture
+below.</p>
+<img src="tutorials/var.PNG" alt="var" style="width:250px;height:150px;">
+<p> There are no variables when you begin your program, you need to make them. To do this, click on the <i>Data</i>
+tab and then on the <i>Make a Variable</i> button.</p>
+<img src="tutorials/makevariable.PNG" alt="makevar" style="width:250px;height:180px;">
+<p>You will then be asked to give your variable a name. Try to think of good names for your variables so that you remember
+what they are for. For example <i>NbrOfSpins</i> or <i>TimesLeft</i>. Once you have created your variable, you will get some
+new blocks to use.</p>
+<img src="tutorials/newvar.PNG" alt="newvar" style="width:250px;height:150px;">
+<p> With the <i>set block</i> you decide the starting value of your variable. If you want to count upwards for example,
+you can start on 0, if you're counting down, then set your variable to the highest value you want to use. With the
+<i>change-by block</i> you decide by how much you want your variable to change each time. For instance if you are counting
+then you should set this value to 1. </p>
+<p>Variables are also used for conditionals which are explained below.</p>
+<p><a href="#menu">Back to Menu</a></p>
+
+<h3 id="con">Conditionals</h3>
+<p>A condition is when you say <i>If this happens, do that</i>. So for example, you can use variables to say <i>if speed
+reaches max speed, then decrease the speed</i>. This is done using orange blocks in the <i>Control</i> tab that begin with 
+<i>if</i>. An example is shown below.</p>
+<img src="tutorials/cond.PNG" alt="cond" style="width:250px;height:150px;">
+<p>This means that if the value of the variable, which in this case may be a speed, is bigger than 10, then decrease 
+speed by 2.</p>
+<p>There is also an <i>if-then-else block</i> which means that if the variable, in the example above, is not bigger than
+10, then you can tell it to do something else. Below, it is now telling the robot to increase the speed by two if the variable is
+less than 10.</p>
+<img src="tutorials/cond2.PNG" alt="cond2" style="width:250px;height:150px;">
+<p><a href="#menu">Back to Menu</a></p>
+
+<h3 id="lists">Lists</h3>
+<p>Lists are used to keep variables or values in a specific order. You can add and delete things from a list but also
+replace items in the list with other values or variables. You can also check whether a list contains a certain value or
+not.</p>
+<img src="tutorials/newlist.PNG" alt="lists" style="width:304px;height:150px;">
+<p>As with variables, there are no ready lists to use, you need to make your own. In the tab called <i>Data</i>, click
+on the <i>Make a List</i> button and choose a name for your list.</p>
+<img src="tutorials/makelist.PNG" alt="lists2" style="width:250px;height:180px;">
+<p>You can then start adding values or variables to your list using the <i>add block</i>, which adds your values
+to the last place in your list. You can also use the <i>insert-at-of block</i> by saying where in the list you want to
+ add your value.</p>
+ <p>You can see an example of how to use a list below.</p>
+<img src="tutorials/usinglist.PNG" alt="lists3" style="width:250px;height:180px;">
+<p><a href="#menu">Back to Menu</a></p>
 
 <h3 id="prog1">Uploading your program to PedaGogo</h3>
 <p>You will need a flashdrive with USB blablablablabladibla red button bladibladiblaa.
@@ -72,13 +137,14 @@ You can tell by the shapes of the blocks how they fit together.</p>
 <p><a href="#menu">Back to Menu</a></p>
 
 <h2 id="mot">Motion</h2>
-Practise makes perfect!
-<p><a href="#t1">Task 1</a></p>
-<p><a href="#t2">Task 2</a></p>
-<p><a href="#t3">Task 3</a></p>
-<p><a href="#t4">Task 4</a></p>
-<p><a href="#t5">Task 5</a></p>
-<p><a href="#t6">Task 6</a></p>
+<p>Practise makes perfect! Read about Direction and Speed to complete the following tasks.</p>
+<p><a href="#t1">Task 1</a>
+   <a href="#t2">Task 2</a>
+   <a href="#t3">Task 3</a></p>
+<p><a href="#t4">Task 4</a>
+   <a href="#t5">Task 5</a>
+   <a href="#t6">Task 6</a></p>
+
 <h3 id="dir">Direction and Speed</h3>
 <p>The speed can be changed by changing the values in the speed blocks. Changing the value by 1 means.. Blablabla. 
 Max speed is.. Min speed is.. jadajadajada!</p>
@@ -88,49 +154,84 @@ Max speed is.. Min speed is.. jadajadajada!</p>
  <img src="tutorials/andragrader.PNG" alt="fit" style="width:180px;height:130px;">
  <p>Below are some examples of how the robot turns depending on the degree-value</p>
  <img src="tutorials/grader.PNG" alt="grader" style="width:304px;height:228px;">
- <p>If you need the robot to turn around at a specific angle, like when you want it to move in a triangle, 
+ <p id="grader2">If you need the robot to turn around at a specific angle, like when you want it to move in a triangle, 
  remember to calculate the correct angle for the turn-block as follows:</p>
   <img src="tutorials/grader2.PNG" alt="grader2" style="width:304px;height:150px;">
+  <p><a href="#menu">Back to Menu</a></p>
 <p>You can practise your skillzzz by completing the following tasks! Enjoooy!</p>
+
 <h3 id="t1">Task 1: Speed</h3>
 <p><b>1.</b> Try changing the speeds from the minimum speed to the maximum by using the <a href="#dir">increase speed</a> 
-block, use different values in the block to see the difference.</p>
-<p><b>2.</b> Try using a <a href="#loops">loop</a> to gradually increase the speed up to the maximum speed, 
+block, try some different values in the increase block to see the difference.</p>
+<img src="tutorials/task1speed.PNG" alt="task1" style="width:304px;height:110px;">
+<p><b>2.</b> This time, try using a <a href="#loops">loop</a> to gradually increase the speed up to the maximum speed, 
 then use another loop to decrease the speed down to the minimum speed.</p>
+<p><i><b>Remember:</b> the max speed is 255 (?) and the minimum speed is ??.</i></p>
 <p><a href="#mot">Back to Motion</a></p>
-<h3 id="t2">Task 2</h3>
+
+<h3 id="t2">Task 2: Shapes</h3>
+<p><b>1.</b>Use the turn-blocks to make the robot drive in a square shape and then try a circle. 
+Try to use <a href="#loops">loops</a> to do this.<br>
+<i><b>Hint:</b> A circle is like a square, but with many more corners.</i></p>
+<img src="tutorials/task2.PNG" alt="task2" style="width:304px;height:150px;">
+<p><b>2.</b>This time try to use the turn-blocks to make the robot drive in a triangle. The angles should all be the same size. 
+Then try again with different sizes for the angles.</p>
+<p><i><b>Remember:</b> how to <a href="#grader2">calculate the angles.</a></i></p>  
 <p><a href="#mot">Back to Motion</a></p>
-<h3 id="t3">Task 3</h3>
+
+<h3 id="t3">Task 3: ZigZag</h3>
+<p><b>1.</b>Use what you have learned about angles to write a program that will tell the robot to drive forward in 
+a zigzag motion. Don't forget to use loops!</p>
+<img src="tutorials/zigzag.PNG" alt="task3" style="width:304px;height:80px;">
+<p><b>2.</b> This time try to make the robot move forward in a more slithery motion, like a snake.</p>
+<p><i><b>Hint:</b> you can use semi-circles to make the turns smoother.</i></p>
 <p><a href="#mot">Back to Motion</a></p>
-<h3 id="t4">Task 4</h3>
+
+<h3 id="t4">Task 4: Variables</h3>
+<p><b>1.</b>For this task you need to <a href="#var">make a variable.</a> Call it <i>Speed</i> and set it to (vad min nu är).
+As in task 2.1, use a loop to increase the speed of the robot but this time it should only reach the speed 200. Use your 
+variable to do this.</p>
+<p><i><b>Remember:</b> variables can be placed in the <a href="#dmnds">diamond shaped blocks</a> which fit nicely in some 
+of the loops.</i></p>
+<p><b>2.</b>This time, make a variable called <i>SpinTimes</i> and set it to five. Write a program that will make your robot
+spin around five times using your variable.</p>
+<img src="tutorials/task4.PNG" alt="task4" style="width:200px;height:180px;">
+<p><i><b>Hint:</b> the variable can be changed by -1.</i></p> 
 <p><a href="#mot">Back to Motion</a></p>
-<h3 id="t5">Task 5</h3>
+
+<h3 id="t5">Task 5: Lists</h3>
 <p><a href="#mot">Back to Motion</a></p>
-<h3 id="t6">Task 6</h3>
+
+<h3 id="t6">Task 6: Mission</h3>
 <p><a href="#mot">Back to Motion</a></p>
 <p><a href="#menu">Back to Menu</a></p>
 
 <h2 id="led">Lights</h2>
-Practise makes perfect!
-<p><a href="#t11">Task 1</a></p>
-<p><a href="#t21">Task 2</a></p>
-<p><a href="#t31">Task 3</a></p>
-<p><a href="#t41">Task 4</a></p>
-<p><a href="#t51">Task 5</a></p>
-<p><a href="#t61">Task 6</a></p>
-<p>Snacka om lamporna, vad roligt sååå roligt, man kan han med dom!! </p>
+<p>Practise makes perfect!</p>
+<p><a href="#t11">Task 1</a>
+   <a href="#t21">Task 2</a>
+   <a href="#t31">Task 3</a></p>
+<p><a href="#t41">Task 4</a>
+   <a href="#t51">Task 5</a>
+   <a href="#t61">Task 6</a></p>
+<p>Snacka om lamporna, vad roligt saaaa roligt, man kan han med dom!! </p>
 <p>You can practise your skillzzz by completing the following tasks! Enjoooy!</p>
 <h3 id="t11">Task 1</h3>
 <p><a href="#led">Back to Lights</a></p>
+
 <h3 id="t21">Task 2</h3>
 <p><a href="#led">Back to Lights</a></p>
+
 <h3 id="t31">Task 3</h3>
 <p><a href="#led">Back to Lights</a></p>
+
 <h3 id="t41">Task 4</h3>
 <p><a href="#led">Back to Lights</a></p>
+
 <h3 id="t51">Task 5</h3>
 <p><a href="#led">Back to Lights</a></p>
-<h3 id="t61">Task 6</h3>
+
+<h3 id="t61">Task 6: Mission</h3>
 <p><a href="#led">Back to Lights</a></p>
 <p><a href="#menu">Back to Menu</a></p>
 
