@@ -12,7 +12,7 @@
 }
 #section {
     width:310px;
-    float:left;	 	 
+    float:left;
 }
 a:link {
     color: black;
@@ -25,7 +25,7 @@ a:visited {
     text-decoration: underline;
 }
 a:hover {
-    color: yellow;
+    color: white;
     background-color: transparent;
     text-decoration: none;
 }
@@ -47,7 +47,7 @@ a:hover {
 </style>
 </head>
 
-<body>
+<body bgcolor=lightgrey>
 <div id="header">
 <h1 id="menu">Tutorials</h1>
 <h3 id="swe"><a href="tutorialswe.html">Svenska</a>
@@ -70,15 +70,15 @@ a:hover {
 <p><a href="#prog1">Uploading a program</a></p>
 
 <h3 id="prog">Creating a program</h3>
-<p> The different tabs represent different types of blocks which can be seen when you click on the tabs.</p> 
+<p> The different tabs represent different types of blocks which can be seen when you click on the tabs.</p>
 <img src="tutorials/tabs.PNG" alt="tabs" style="width:304px;">
-<p>If you click on <i>Motion</i> for example, you will see blocks that can make the robot move, 
+<p>If you click on <i>Motion</i> for example, you will see blocks that can make the robot move,
 such as forward, backward and turn.<br>
 To create a program, you simply click on a block and drag it to the workspace, where you then drop it. </p>
 <img src="tutorials/dragndrop.PNG" alt="dragndrop" style="width:304px;">
-<p>Usually you will begin with a <i>When clicked</i> block. This will mark the beginning of your program and tell the PedaGogo 
+<p>Usually you will begin with a <i>When clicked</i> block. This will mark the beginning of your program and tell the PedaGogo
 when to start executing your program, which means it will start to do the things your program tells it to when you click on the
-button with the same colour. 
+button with the same colour.
 There are three buttons to chose from; green, blue and yellow.</p>
 <img src="tutorials/buttons.PNG" alt="buttons" style="width:150px;">
 <p>You may have seen that there is also a red button on the PedaGogo, this button will be explained later on.<br>
@@ -89,8 +89,8 @@ blocks, they will snap into place automatically.</p>
 
 <h3 id="loops">Loops</h3>
 <img src="tutorials/loops.PNG" alt="loops" style="width:304px;">
-<p>The orange blocks that you see above are called loops. You can use these to repeat parts of, or all of, your 
-program. If you want to, for example, spin round four times, you can put the repeat block around the turn 
+<p>The orange blocks that you see above are called loops. You can use these to repeat parts of, or all of, your
+program. If you want to, for example, spin round four times, you can put the repeat block around the turn
 block and change the repeat-value to 4.</p>
 <img src="tutorials/loops2.PNG" alt="loops2" style="width:230px;">
 <p>To change the values in the blocks, double click on them and type in a new value!</p>
@@ -103,7 +103,7 @@ tab called Operators. </p>
 <p><a href="#menu">Back to Menu</a></p>
 
 <h3 id="var">Variables</h3>
-<p>Variables are used to store information, for example they can be used as counters. This can be used in loops: 
+<p>Variables are used to store information, for example they can be used as counters. This can be used in loops:
 instead of changing the value in a <i>repeat block</i>, you could use a <i>repeat until block</i> like in the picture
 below.</p>
 <img src="tutorials/var.PNG" alt="var" style="width:250px; ">
@@ -123,10 +123,10 @@ then you should set this value to 1. </p>
 
 <h3 id="con">Conditionals</h3>
 <p>A condition is when you say <i>If this happens, do that</i>. So for example, you can use variables to say <i>if speed
-reaches max speed, then decrease the speed</i>. This is done using orange blocks in the <i>Control</i> tab that begin with 
+reaches max speed, then decrease the speed</i>. This is done using orange blocks in the <i>Control</i> tab that begin with
 <i>if</i>. An example is shown below.</p>
 <img src="tutorials/cond.PNG" alt="cond" style="width:250px; ">
-<p>This means that if the value of the variable, which in this case may be a speed, is bigger than 10, then decrease 
+<p>This means that if the value of the variable, which in this case may be a speed, is bigger than 10, then decrease
 speed by 2.</p>
 <p>There is also an <i>if-then-else block</i> which means that if the variable, in the example above, is not bigger than
 10, then you can tell it to do something else. Below, it is now telling the robot to increase the speed by two if the variable is
@@ -167,18 +167,18 @@ larger than 1, and, the value should be smaller than 5. So, the value of the var
 to be true.</p>
 <p>The <i>mod</i> operator is a bit tricky to understand. This is used to say that a number can be divided by another number and the
 result will be a whole number, meaning there will be no decimals. So for instance, 9 divided by 3 is 3, and 10 divided by 2 is 5.
-If the result is a whole number, the result of using <i>mod</i> will be 0. This can be used to, for example, 
+If the result is a whole number, the result of using <i>mod</i> will be 0. This can be used to, for example,
 check if a number is even or odd like in the example below. </p>
 <img src="tutorials/oddeven.PNG" alt="ops3" style="width:304px; ">
 <p><a href="#menu">Back to Menu</a></p>
 
 <h3 id="prog1">Uploading your program to PedaGogo</h3>
 <p>You will need a USB memory-stick. When you are satisfied with your program and wish to test it on the PedaGogo,
-simply press <i>File</i> and then <i>Save Project</i>, saving your project to the USB memory-stick.</p> 
+simply press <i>File</i> and then <i>Save Project</i>, saving your project to the USB memory-stick.</p>
 <img src="tutorials/upload.PNG" alt="up" style="width:304px; ">
-<p>Then all you need to do is put the memory-stick into the PedaGogo and press the red button on the robot. 
-The red button is the restart button and it uploads the program saved to your memory-stick onto the robot. 
-Then, when you click on the button you have chosen to start your program, the PedaGogo will start to follow the 
+<p>Then all you need to do is put the memory-stick into the PedaGogo and press the red button on the robot.
+The red button is the restart button and it uploads the program saved to your memory-stick onto the robot.
+Then, when you click on the button you have chosen to start your program, the PedaGogo will start to follow the
 commands you have given it!</p>
 <p>You can also load a project from the memory-stick, so you can pick up where you left off last time without having
 to redo your program!</p>
@@ -194,7 +194,7 @@ to redo your program!</p>
    <a href="#t6">Task 6</a></p>
 
 <h3 id="dir">Direction and Speed</h3>
-<p>The speed can be changed by changing the values in the speed blocks. Changing the value by 1 means.. Blablabla. 
+<p>The speed can be changed by changing the values in the speed blocks. Changing the value by 1 means.. Blablabla.
 Max speed is.. Min speed is.. jadajadajada!</p>
 <img src="tutorials/speed.PNG" alt="speed" style="width:210px; ">
 <p>To tell the robot to make a turn, you use the turn blocks to turn either left or right. You can decide how many degrees
@@ -202,33 +202,33 @@ Max speed is.. Min speed is.. jadajadajada!</p>
  <img src="tutorials/andragrader.PNG" alt="fit" style="width:180px; ">
  <p>Below are some examples of how the robot turns depending on the degree-value</p>
  <img src="tutorials/grader.PNG" alt="grader" style="width:304px; ">
- <p id="grader2">If you need the robot to turn around at a specific angle, like when you want it to move in a triangle, 
+ <p id="grader2">If you need the robot to turn around at a specific angle, like when you want it to move in a triangle,
  remember to calculate the correct angle for the turn-block as follows:</p>
   <img src="tutorials/grader2.PNG" alt="grader2" style="width:304px; ">
   <p><a href="#menu">Back to Menu</a></p>
 <p>You can practise your skillzzz by completing the following tasks! Enjoooy!</p>
 
 <h3 id="t1">Task 1: Speed</h3>
-<p><b>1.</b> Try changing the speeds from the minimum speed to the maximum by using the <a href="#dir">increase speed</a> 
+<p><b>1.</b> Try changing the speeds from the minimum speed to the maximum by using the <a href="#dir">increase speed</a>
 block, try some different values in the increase block to see the difference.</p>
 <img src="tutorials/task1speed.PNG" alt="task1" style="width:304px; ">
-<p><b>2.</b> This time, try using a <a href="#loops">loop</a> to gradually increase the speed up to the maximum speed, 
+<p><b>2.</b> This time, try using a <a href="#loops">loop</a> to gradually increase the speed up to the maximum speed,
 then use another loop to decrease the speed down to the minimum speed.</p>
 <p><i><b>Remember:</b> the max speed is 255 (?) and the minimum speed is ??.</i></p>
 <p><a href="#mot">Back to Motion</a></p>
 
 <h3 id="t2">Task 2: Shapes</h3>
-<p><b>1.</b>Use the turn-blocks to make the robot drive in a square shape and then try a circle. 
+<p><b>1.</b>Use the turn-blocks to make the robot drive in a square shape and then try a circle.
 Try to use <a href="#loops">loops</a> to do this.<br>
 <i><b>Hint:</b> A circle is like a square, but with many more corners.</i></p>
 <img src="tutorials/task2.PNG" alt="task2" style="width:304px; ">
-<p><b>2.</b>This time try to use the turn-blocks to make the robot drive in a triangle. The angles should all be the same size. 
+<p><b>2.</b>This time try to use the turn-blocks to make the robot drive in a triangle. The angles should all be the same size.
 Then try again with different sizes for the angles.</p>
-<p><i><b>Remember:</b> how to <a href="#grader2">calculate the angles.</a></i></p>  
+<p><i><b>Remember:</b> how to <a href="#grader2">calculate the angles.</a></i></p>
 <p><a href="#mot">Back to Motion</a></p>
 
 <h3 id="t3">Task 3: ZigZag</h3>
-<p><b>1.</b>Use what you have learned about angles to write a program that will tell the robot to drive forward in 
+<p><b>1.</b>Use what you have learned about angles to write a program that will tell the robot to drive forward in
 a zigzag motion. Don't forget to use a loop if you can!</p>
 <img src="tutorials/zigzag.PNG" alt="task3" style="width:304px; ">
 <p><b>2.</b> This time try to make the robot move forward in a more slithery motion, like a snake.</p>'
@@ -240,23 +240,23 @@ a zigzag motion. Don't forget to use a loop if you can!</p>
 <p><b>1.</b>For this task you need to <a href="#var">make a variable.</a> Call it <i>Speed</i> and set it to 200.
 As in task 2.1, use a loop to increase the speed of the robot but this time it should be from minimum speed to 200, the
 value of your new variable. Use your <i>Speed</i> variable to do this.</p>
-<p><i><b>Remember:</b> variables can be placed in the <a href="#dmnds">diamond shaped blocks</a> which fit nicely in some 
+<p><i><b>Remember:</b> variables can be placed in the <a href="#dmnds">diamond shaped blocks</a> which fit nicely in some
 of the loops.</i></p>
 <p><b>2.</b>This time, make a variable called <i>SpinTimes</i> and set it to five. Write a program that will make your robot
 spin around five times using your variable.</p>
 <img src="tutorials/task4.PNG" alt="task4" style="width:200px; ">
-<p><i><b>Hint:</b> the variable can be changed by -1.</i></p> 
+<p><i><b>Hint:</b> the variable can be changed by -1.</i></p>
 <p><a href="#mot">Back to Motion</a></p>
 
 <h3 id="t5">Task 5: Lists</h3>
 <p><b>1.</b> In this task you need to <a href="#lists">create a list</a>. Call it <i>Speeds</i> and add five values
- (speeds) to your list. Now write a program that increases or decreases the speed by the amounts that you put in your 
+ (speeds) to your list. Now write a program that increases or decreases the speed by the amounts that you put in your
  list.</p>
   <img src="tutorials/task5.PNG" alt="task5" style="width:304px; ">
  <i><b>Hint:</b> use a loop, and the blocks you get with your new list.</i>
  <p><b>2.</b> This time make a list and add values that you can use in a program instructing the robot to drive in the
  shape of a square. Don't forget to use a loop!</p>
- <i><b>Hint:</b> you only need to add two values; how many cm to go forward and how many degrees to turn. 
+ <i><b>Hint:</b> you only need to add two values; how many cm to go forward and how many degrees to turn.
  By clicking on the arrow you can choose the first or last item from a list to use. </i>
  <img src="tutorials/task5b.PNG" alt="task5b" style="width:250px; ">
 <p><a href="#mot">Back to Motion</a></p>
@@ -292,27 +292,29 @@ blink 10 times. </p>
 light 10 times.</p>
 <p><a href="#led">Back to Lights</a></p>
 
-<h3 id="t31">Task 3: Shapes</h3>
-<p><b>1.</b> <a href="#t2">In task 2</a> of the motion chapter, you had to write a program telling the robot to drive in a square. 
+<h3 id="t31">Task 3</h3>
+<p><b>1.</b> <a href="#t2">In task 2</a> of the motion chapter, you had to write a program telling the robot to drive in a square.
+>>>>>>> fdbfca274a4fc27a2e3a6746b6f3c4fa03f21d09
 Do this again but this time blink with the lights before each turn. </p>
-<p><b>2.</b> This time, rewrite the program telling your robot to move forward in <a href"#t3">zigzag</a> and add a few 
+<p><b>2.</b> This time, rewrite the program telling your robot to move forward in <a href"#t3">zigzag</a> and add a few
 blinks of the lights before each turn. Only blink with one of the lights to show which direction your are turning.</p>
 <img src="tutorials/zigzag.PNG" alt="task3" style="width:304px; ">
 <p><a href="#led">Back to Lights</a></p>
 
-<h3 id="t41">Task 4: Conditionals</h3>
-<p><b>1.</b> Set timesToBlink to 0. Change your variable by 1 and check if your variable is bigger than 0 <i>and</i> 
+<h3 id="t41">Task 4</h3>
+<p><b>1.</b> Set timesToBlink to 0. Change your variable by 1 and check if your variable is bigger than 0 <i>and</i>
+>>>>>>> fdbfca274a4fc27a2e3a6746b6f3c4fa03f21d09
 less than 5, if it is blink with the left lights, if not, blink with the right lights. Do this ten times.</p>
 <img src="tutorials/tasklight.PNG" alt="task4" style="width:304px; ">
-<p><b>2.</b> This time, if your variable is an even number, blink with the left light, if it is odd, blink with the 
+<p><b>2.</b> This time, if your variable is an even number, blink with the left light, if it is odd, blink with the
 right light. Do this 10 times also.</p>
-<i><b>Remember:</b> how to check if it is <a href="#ops">an even number?</a></i>     
+<i><b>Remember:</b> how to check if it is <a href="#ops">an even number?</a></i>
 <p><a href="#led">Back to Lights</a></p>
 
 <h3 id="t51">Task 5: Lists</h3>
 <p><b>1.</b> This task will be like task 4.2 but you will need to create a list. Set timesToBlink to 1 and loop the
 following 10 times: add timesToBlink to the list, then increase its value by 1. Then with a second loop say that if
- the first element in the list is less than 5, blink with the right light, else blink with the left light. 
+ the first element in the list is less than 5, blink with the right light, else blink with the left light.
  Then remove the first element. Do this (second loop) until the list is empty.</p>
  <i><b>Remember:</b> how to <a href="#lists">make a list?</a></i><br>
 <i><b>Hint:</b> when the list is empty the length of the list is 0.</i>
@@ -357,7 +359,7 @@ following 10 times: add timesToBlink to the list, then increase its value by 1. 
                 scrollTop: 0}, scrollDuration);
                     })
         });
-        
+
 </script>
 
 

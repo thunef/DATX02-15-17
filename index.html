@@ -6,12 +6,12 @@
   <style>
   html { padding: 0; margin: 0; height: 100%; overflow: none}
   object { padding: 0; margin: 0; height: 100%; overflow: none;visibility: hidden;}
-  body { 
-    background-color: lightgrey;
+  body {
+    background-color: black;
     background-image: url('light.gif');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center; 
+    background-position: center;
     padding: 0; margin: 0; height: 100%; overflow: none
   }
     #tutorial {
@@ -19,6 +19,7 @@
     height:100%;
     width:25%;
 	float:right;
+  visibility: hidden;
 }
   </style>
 </head>
@@ -37,12 +38,13 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript">
-  
+
     $( document ).ready(function() {
       window.setTimeout(function(){
         $("#obj").css("visibility", "visible");
+        $("#tutorial").css("visibility", "visible");
       }, 3000);
-       
+
     });
   </script>
 
