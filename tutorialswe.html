@@ -29,6 +29,21 @@ a:hover {
     background-color: transparent;
     text-decoration: none;
 }
+.top{
+  z-index: 20;
+  background-color: #030303;
+  bottom: 2em;
+  color: #fff;
+  opacity:0.8;
+  padding: 1.5em;
+  position: fixed;
+  right: 1.5em;
+  text-decoration: none;
+}
+.top:hover{
+  opacity:1;
+  transition:1s;
+}
 </style>
 </head>
 
@@ -266,5 +281,37 @@ Gl&oumlm inte att anv&aumlnda en loop!</p>
 <p><a href="#meny">Tillbaka till Menyn</a></p>
 
 </div>
+
+<footer>
+  <a href="#" class="top" style="color:#FFFFFF; background-color: #030303; text-decoration: none;">&uarr;</a>
+  </footer>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log("Document is ready");
+        var offset=250, // At what pixels show Back to Top Button
+        scrollDuration=300; // Duration of scrolling to top
+            $(window).scroll(function() {
+            if ($(this).scrollTop() > offset) {
+                $('.top').fadeIn(500); // Time(in Milliseconds) of appearing of the Button when scrolling down.
+            } else {
+                $('.top').fadeOut(500); // Time(in Milliseconds) of disappearing of Button when scrolling up.
+            }
+        });
+        // Smooth animation when scrolling
+        $('.top').click(function(event) {
+        event.preventDefault();
+                $('html, body').animate({
+                scrollTop: 0}, scrollDuration);
+                    })
+        });
+        
+</script>
+
+
 </body>
 </html>
