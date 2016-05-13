@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get Started!</title>
+	<meta http-equiv="content-type" content="text/html" charset="ISO-8859-15" />
+	<style>
+#header {
+    background-color:darkgrey;
+    color:white;
+    text-align:center;
+    padding:2px;
+}
+#section {
+    width:310px;
+    float:left;
+}
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+.top{
+  z-index: 20;
+  background-color: #030303;
+  bottom: 2em;
+  color: #fff;
+  opacity:0.8;
+  padding: 1.5em;
+  position: fixed;
+  right: 1.5em;
+  text-decoration: none;
+}
+.top:hover{
+  opacity:1;
+  transition:1s;
+}
+</style>
+</head>
+
+<body bgcolor=lightgrey>
+<div id="header">
+<h1 id="menu">Get started with PedaGogo!</h1>
+</div><br>
+<h2 id="prog">Creating a program</h2>
+<p>Here you can learn how to get started making your programs and how to use the different blocks!</p>
+<p><a href="#prog">Creating a program</a></p>
+<p><a href="#loops">Loops</a></p>
+<p><a href="#var">Variables</a></p>
+<p><a href="#con">Conditionals</a></p>
+<p><a href="#lists">Lists</a></p>
+<p><a href="#Op">Operators</a></p>
+<p><a href="#dir">Direction and Speed</a></p>
+
+<p> The different tabs represent different types of blocks which can be seen when you click on the tabs.</p>
+<img src="tutorials/tabs.PNG" alt="tabs" style="width:304px;">
+<p>If you click on <i>Motion</i> for example, you will see blocks that can make the robot move,
+such as forward, backward and turn.<br>
+To create a program, you simply click on a block and drag it to the workspace, where you then drop it. </p>
+<img src="tutorials/dragndrop.PNG" alt="dragndrop" style="width:304px;">
+<p>Usually you will begin with a <i>When clicked</i> block. This will mark the beginning of your program and tell the PedaGogo
+when to start executing your program, which means it will start to do the things your program tells it to when you click on the
+button with the same colour.
+There are three buttons to chose from; green, blue and yellow.</p>
+<img src="tutorials/buttons.PNG" alt="buttons" style="width:150px;">
+<p>You may have seen that there is also a red button on the PedaGogo, this button will be explained later on.<br>
+You can tell by the shapes of the blocks how they fit together. By dragging the blocks inside or underneath other
+blocks, they will snap into place automatically.</p>
+<img src="tutorials/fit.PNG" alt="fit" style="width:304px;">
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="loops">Loops</h3>
+<img src="tutorials/loops.PNG" alt="loops" style="width:304px;">
+<p>The orange blocks that you see above are called loops. You can use these to repeat parts of, or all of, your
+program. If you want to, for example, spin round four times, you can put the repeat block around the turn
+block and change the repeat-value to 4.</p>
+<img src="tutorials/loops2.PNG" alt="loops2" style="width:230px;">
+<p>To change the values in the blocks, double click on them and type in a new value!</p>
+<img src="tutorials/siffror.PNG" alt="siff" style="width:210px;">
+<p id="dmnds">The <i>forever block</i> will repeat (loop) the blocks placed inside forever, or until you end the program.
+The <i>repeat until block</i> has an empty space shaped like a diamond. You can find the blocks that fit in here under the
+tab called Operators. </p>
+<img src="tutorials/diamonds.PNG" alt="dmnds" style="width:150px; ">
+<p>To use these, you need to know more about variables.</p>
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="var">Variables</h3>
+<p>Variables are used to store information, for example they can be used as counters. This can be used in loops:
+instead of changing the value in a <i>repeat block</i>, you could use a <i>repeat until block</i> like in the picture
+below.</p>
+<img src="tutorials/var.PNG" alt="var" style="width:250px; ">
+<p> There are no variables when you begin your program, you need to make them. To do this, click on the <i>Data</i>
+tab and then on the <i>Make a Variable</i> button.</p>
+<img src="tutorials/makevariable.PNG" alt="makevar" style="width:250px; ">
+<p>You will then be asked to give your variable a name. Try to think of good names for your variables so that you remember
+what they are for. For example <i>NbrOfSpins</i> or <i>TimesLeft</i>. Once you have created your variable, you will get some
+new blocks to use.</p>
+<img src="tutorials/newvar.PNG" alt="newvar" style="width:250px; ">
+<p> With the <i>set block</i> you decide the starting value of your variable. If you want to count upwards for example,
+you can start on 0, if you're counting down, then set your variable to the highest value you want to use. With the
+<i>change-by block</i> you decide by how much you want your variable to change each time. For instance if you are counting
+then you should set this value to 1. </p>
+<p>Variables are also used for conditionals which are explained below.</p>
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="con">Conditionals</h3>
+<p>A condition is when you say <i>If this happens, do that</i>. So for example, you can use variables to say <i>if speed
+reaches max speed, then decrease the speed</i>. This is done using orange blocks in the <i>Control</i> tab that begin with
+<i>if</i>. An example is shown below.</p>
+<img src="tutorials/cond.PNG" alt="cond" style="width:250px; ">
+<p>This means that if the value of the variable, which in this case may be a speed, is bigger than 10, then decrease
+speed by 2.</p>
+<p>There is also an <i>if-then-else block</i> which means that if the variable, in the example above, is not bigger than
+10, then you can tell it to do something else. Below, it is now telling the robot to increase the speed by two if the variable is
+less than 10.</p>
+<img src="tutorials/cond2.PNG" alt="cond2" style="width:250px; ">
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="lists">Lists</h3>
+<p>Lists are used to keep variables or values in a specific order. You can add and delete things from a list but also
+replace items in the list with other values or variables. You can also check whether a list contains a certain value or
+not.</p>
+<img src="tutorials/newlist.PNG" alt="lists" style="width:304px; ">
+<p>As with variables, there are no ready lists to use, you need to make your own. In the tab called <i>Data</i>, click
+on the <i>Make a List</i> button and choose a name for your list.</p>
+<img src="tutorials/makelist.PNG" alt="lists2" style="width:250px; ">
+<p>You can then start adding values or variables to your list using the <i>add block</i>, which adds your values
+ last in your list. You can also use the <i>insert-at-of block</i> by saying where in the list you want to
+ add your value.</p>
+ <p>You can see an example of how to use a list below.</p>
+<img src="tutorials/usinglist.PNG" alt="lists3" style="width:250px; ">
+<p>This program will add the values 50, 40 and 10 to the list called List in that order. It will then increase the speed
+by the first value in the list, and then delete this value so that in the next loop, the first value in the list is now
+40. It will do this 3 times so that the last increase in speed will be by 10, then the list will be empty.</p>
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="Op">Operators</h3>
+<p>Operators are the green blocks that can be found under the <i>Operators</i> tab. They can be used with values that
+you write yourself or with variables.</p>
+<img src="tutorials/ops.PNG" alt="ops" style="width:250px; ">
+<p>In the picture below you can see some examples of how to use operators.</p>
+<img src="tutorials/opsex.PNG" alt="ops2" style="width:304px; ">
+<p>In the first <i>If</i> block there is an <i>equals</i> operator saying that the value of the variable should equal
+10. In the <i>repeat until</i> block there is an <i>or</i> operator. This is saying that the value of the variable should
+either be larger than 10, or, the value of the variable plus 5 should equal 14. The loop will repeat until one of these
+is true.<br>
+In the next <i>if</i> block you can see an <i>and</i> operator. This is saying that the value of the variable should be
+larger than 1, and, the value should be smaller than 5. So, the value of the variable has to be between 1 and 5 for this
+to be true.</p>
+<p>The <i>mod</i> operator is a bit tricky to understand. This is used to say that a number can be divided by another number and the
+result will be a whole number, meaning there will be no decimals. So for instance, 9 divided by 3 is 3, and 10 divided by 2 is 5.
+If the result is a whole number, the result of using <i>mod</i> will be 0. This can be used to, for example,
+check if a number is even or odd like in the example below. </p>
+<img src="tutorials/oddeven.PNG" alt="ops3" style="width:304px; ">
+<p><a href="#menu">Back to Menu</a></p>
+<p><a href="tutorial.html">Back to Start</a>
+
+<h3 id="dir">Direction and Speed</h3>
+<p>The speed can be changed by changing the values in the speed blocks. Changing the value by 1 means.. Blablabla.
+Max speed is.. Min speed is.. jadajadajada!</p>
+<img src="tutorials/speed.PNG" alt="speed" style="width:210px; ">
+<p>To tell the robot to make a turn, you use the turn blocks to turn either left or right. You can decide how many degrees
+ the robot should turn by changing the value in the blocks. Here are some values of degrees you could use.</p>
+ <img src="tutorials/andragrader.PNG" alt="fit" style="width:180px; ">
+ <p>Below are some examples of how the robot turns depending on the degree-value</p>
+ <img src="tutorials/grader.PNG" alt="grader" style="width:304px; ">
+ <p id="grader2">If you need the robot to turn around at a specific angle, like when you want it to move in a triangle,
+ remember to calculate the correct angle for the turn-block as follows:</p>
+  <img src="tutorials/grader2.PNG" alt="grader2" style="width:304px; ">
+  <p><a href="#menu">Back to Menu</a></p>
+  <p><a href="tutorial.html">Back to Start</a>
+  
+    <footer>
+  <a href="#" class="top" style="color:#FFFFFF; background-color: #030303; text-decoration: none; display: none;">&uarr;</a>
+  </footer>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log("Document is ready");
+        var offset=250, // At what pixels show Back to Top Button
+        scrollDuration=300; // Duration of scrolling to top
+            $(window).scroll(function() {
+            if ($(this).scrollTop() > offset) {
+                $('.top').fadeIn(500); // Time(in Milliseconds) of appearing of the Button when scrolling down.
+            } else {
+                $('.top').fadeOut(500); // Time(in Milliseconds) of disappearing of Button when scrolling up.
+            }
+        });
+        // Smooth animation when scrolling
+        $('.top').click(function(event) {
+        event.preventDefault();
+                $('html, body').animate({
+                scrollTop: 0}, scrollDuration);
+                    })
+        });
+
+</script>
+
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tutorials
-	</title>
+	<title>Ladda ditt Program!</title>
+	<meta http-equiv="content-type" content="text/html" charset="ISO-8859-15" />
 	<style>
 #header {
     background-color:darkgrey;
@@ -52,29 +52,25 @@ a:hover {
 }
 </style>
 </head>
-
 <body bgcolor=lightgrey>
 <div id="header">
-<h1 id="menu">Tutorials</h1>
-<h3 id="swe"><a href="tutorialswe.html">Svenska</a>
+<h1 id="meny">Ladda ditt Program!</h1>
 </div><br>
 
-<div id="header1">
-<h2 id="kom"><a href="getstart.html">Getting started with PedaGogo!</a></h2>
-</div><br>
-<div id="header1">
-<h2 id="kom"><a href="loadprog.html">Uploading your Program!</a></h2>
-</div><br>
-<div id="header1">
-<h2 id="kom"><a href="tasks.html">Tasks!</a></h2>
-</div><br>
+<h2 id="prog1">Att ladda &oumlver ditt program till PedaGogo</h2>
+<p>Du kommer att beh&oumlva ett USB minne. N&aumlr du k&aumlnner dig n&oumljd med ditt program och vill testa att
+k&oumlra det i roboten, beh&oumlver du bara trycka p&aring <i>Arkiv</i> och sedan <i>Ladda ner till din dator eller usb-minnet
+f&oumlr PedaGogo</i>. </p>
+<img src="tutorialsswe/uppladd.PNG" alt="up" style="width:304px; ">
+<p>Sen beh&oumlver du bara stoppa in USB minnet i roboten och trycka p&aring den r&oumlda knappen. D&aring kommer
+ditt program att laddas upp p&aring roboten och sedan &aumlr det bara att k&oumlra ig&aring genom att trycka p&aring
+den knapp som du har valt att starta ditt program med!</p>
+<p>Du kan &aumlven ladda upp ett projekt, p&aring s&aring s&aumltt kan du spara alla dina program och &aumldra i
+dom som du vill!</p>
+<p><a href="tutorialswe.html">Tillbaka till Startsidan</a></p>
 
-
-<img src="tutorials/pedagogo.jpg" alt="pedagogo" style="width:304px;">
-
-</div>
- <footer>
-  <a href="#" class="top" style="color:#FFFFFF; background-color: #030303; text-decoration: none;display: none;">&uarr;</a>
+<footer>
+  <a href="#" class="top" style="color:#FFFFFF; background-color: #030303; text-decoration: none; display: none;">&uarr;</a>
   </footer>
 
 
@@ -84,8 +80,6 @@ a:hover {
 <script type="text/javascript">
     $(document).ready(function() {
         console.log("Document is ready");
-
-
         var offset=250, // At what pixels show Back to Top Button
         scrollDuration=300; // Duration of scrolling to top
             $(window).scroll(function() {
@@ -95,7 +89,6 @@ a:hover {
                 $('.top').fadeOut(500); // Time(in Milliseconds) of disappearing of Button when scrolling up.
             }
         });
-
         // Smooth animation when scrolling
         $('.top').click(function(event) {
         event.preventDefault();
