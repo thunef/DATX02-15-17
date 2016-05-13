@@ -54,6 +54,7 @@ globalcall = {}
 
 current_speed = 120
 
+normal_speed = 120
 min_speed = 50
 
 def reset_timer():
@@ -248,15 +249,25 @@ def executeBlock(block):
         elif block[0] == "turnRight:":
             print "rotate right " , block[1], " degrees"
             rot = int(getValue(block[1])/5.5)
-            enc_tgt(0,1,rot)
-            left()
+            if rot < 0 :
+                rot = -rot
+                enc_tgt(1,0,rot)
+                right()
+            else :
+                enc_tgt(0,1,rot)
+                left()
             sleep(rot)
         elif block[0] == "turnLeft:":
             enable_encoders()
             print "rotate left ", block[1], " degrees"
             rot = int(getValue(block[1])/5.5)
-            enc_tgt(1,0,rot)
-            right()
+            if rot < 0 :
+                rot = -rot
+                enc_tgt(0,1,rot)
+                left()
+            else :
+                enc_tgt(1,0,rot)
+                right()
             sleep(rot)
         elif block[0] == 'maxspeed:':
             print 'maxspeed'
@@ -267,6 +278,8 @@ def executeBlock(block):
         elif block[0] == "retardate:":
             print "slowing down:" ,current_speed  ," with ", block[1]
             setSpeed(current_speed-getValue(block[1]))
+        elif block[0] == 'normalspeed':
+            setSpeed(normal_speed)
         elif block[0] == "minspeed:":
             print "min speed"
             setSpeed(min_speed)

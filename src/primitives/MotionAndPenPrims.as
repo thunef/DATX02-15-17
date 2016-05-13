@@ -49,6 +49,7 @@ public class MotionAndPenPrims {
 		primTable["accelerate:"]			= primAccelerate;
 		primTable["retardate:"]			= primRetardate;
 		primTable["maxspeed:"]			= primMaxSpeed;
+		primTable["normalspeed:"]			= primNormalSpeed;
 		primTable["minspeed:"]			= primMinSpeed;
 		primTable["turnRight:"]			= primTurnRight;
 		primTable["turnLeft:"]			= primTurnLeft;
@@ -113,6 +114,8 @@ public class MotionAndPenPrims {
 	private function primRetardate(b:Block):void {
 	}
 	private function primMaxSpeed(b:Block):void {
+	}
+	private function primNormalSpeed(b:Block):void {
 	}
 	private function primMinSpeed(b:Block):void {
 	}
